@@ -18,11 +18,14 @@ class Branch extends Component {
 
     render() {
         return (
-            <ul className="branch"
-            >
-                <span className="branch__text"  onClick={this.onToggle}>{this.props.title}</span>
-                <div className={this.state.active ? 'leaf ' + ((this.props.indent !== undefined) ? this.props.indent : '')
-            :'leaf closed ' + (this.props.indent !== undefined) ? this.props.indent : ''}>
+            <ul className="branch">
+                <div className="input-group" onClick={this.onToggle}>
+                    <span className="branch__text" >{this.props.title}</span>
+                    <svg className={this.state.active ? 'icon chevron-down':'icon chevron-up'}></svg>
+                </div>
+                
+                <div className="break"></div>
+                <div className={this.state.active ? 'leaf ':'leaf closed '} style={this.props.style}>
                 
                     {this.props.children}
                 </div>
@@ -30,7 +33,7 @@ class Branch extends Component {
         );
     }
     
-}
+}                   
 
 
 
