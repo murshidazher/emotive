@@ -1,10 +1,10 @@
 import React from 'react';
 import SideMenu from './SideMenu';
 
-const Navigation = () => {
+const Navigation = (props) => {
     return (
-        <div>
-            <SideMenu />
+        <div>               
+            <SideMenu onClick={props.onRouteChange} />
         </div>
     );
 

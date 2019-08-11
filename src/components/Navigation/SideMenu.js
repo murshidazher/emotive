@@ -7,15 +7,14 @@ import CheckBox from '../Navigation/CheckBox'
 import Logo from '../Logo/Logo';
 import Slider from './Slider';
 import LogoImage from '../../img/logo.svg'
-import Button from '../Button/Button'
 
-const SideMenu = () => {
+const SideMenu = (props) => {
     return (
         <div className="side-menu bg-white">
             <nav className="navbar" role="navigation">
                 <Logo backgroundImage={LogoImage}/>
                 <div style={{textAlign: 'center'}}>
-                    <Button title='Sign out' />
+                <button className="btn" onClick={() => props.onClick('signin')}><span className="btn__content">Sign out</span></button>
                 </div>
                 
                 <Tree >

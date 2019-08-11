@@ -4,6 +4,7 @@
   "private": true,
   "description": "",
   "dependencies": {
+    "clarifai": "^2.9.0",
     "lodash": "4.17.13",
     "normalize.css": "^8.0.1",
     "react": "^16.9.0",
