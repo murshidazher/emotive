@@ -4,6 +4,7 @@ import FaceRecognition from '../components/FaceRecognition/FaceRecognition';
 import ImageLinkForm from '../components/ImageLinkForm/ImageLinkForm';
 import Rank from '../components/Rank/Rank';
 import Login from '../components/Login/Login';
+import Signup from '../components/Signup/Signup';
 import Clarifai from 'clarifai';
 import './App.css';
 
@@ -27,6 +28,7 @@ class App extends Component {
       imageUrl: '',
       box: {},
       route: 'signin',
+      logged: 'false',
     }
   }
 
@@ -62,17 +64,22 @@ class App extends Component {
   }
 
   onRouteChange = (route) => {
+    if(route === 'logout') {
+      this.setState({logged: false});
+    } else if (route === 'home') {
+      this.setState({logged: true});
+    }
+    
     this.setState({route: route});
-    console.log('aaa')
   }
 
   render() {
     return (
       <div className="App">
         {
-          this.state.route === 'signin' ? <Login onRouteChange={this.onRouteChange}/> : 
+          this.state.route === 'home' ? 
           
-          <div className="middle">
+          <div>
           <Navigation onRouteChange={this.onRouteChange} />
           <div className="ml">
             <Rank />
@@ -80,7 +87,11 @@ class App extends Component {
             <FaceRecognition imageUrl={this.state.imageUrl} boundingBox={this.state.box} />
           </div>
           </div>
-          
+
+          : (
+            this.state.route === 'signin' ? <Login onRouteChange={this.onRouteChange}/> 
+            : <Signup onRouteChange={this.onRouteChange}/>
+          )          
         }
         
         

@@ -14,7 +14,7 @@ const SideMenu = (props) => {
             <nav className="navbar" role="navigation">
                 <Logo backgroundImage={LogoImage}/>
                 <div style={{textAlign: 'center'}}>
-                <button className="btn" onClick={() => props.onClick('signin')}><span className="btn__content">Sign out</span></button>
+                <button className="btn" onClick={() => props.onClick('logout')}><span className="btn__content">Sign out</span></button>
                 </div>
                 
                 <Tree >
