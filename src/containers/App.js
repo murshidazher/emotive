@@ -29,6 +29,13 @@ class App extends Component {
       box: {},
       route: 'signin',
       logged: 'false',
+      user: {
+        id: '',
+        name: '',
+        email: '',
+        entries: 0,
+        joined: ''
+      }
     }
   }
 
@@ -36,12 +43,42 @@ class App extends Component {
     this.setState({input: event.target.value});
   }
 
+  loadUser = (data) => {
+    this.setState({user: {
+      id: data.id,
+      name: data.name,
+      email: data.email,
+      entries: data.entries,
+      joined: data.joined
+    }})
+
+  }
+
   onSubmit = () => {
     this.setState({imageUrl: this.state.input})
     app.models.predict(
       Clarifai.FACE_DETECT_MODEL, 
       this.state.input)
-      .then( response => this.displayBoundingBox(this.calcFace(response)))
+      .then( response => {
+
+        if(response) {
+          fetch('http://localhost:3000/image', { 
+            method: 'put',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                id: this.state.user.id,
+            })
+        })
+        .then( resp => resp.json())
+        .then( count => {
+          this.setState(Object.assign(this.state.user, {entries: count}));
+        }) 
+        }
+
+        this.displayBoundingBox(this.calcFace(response))
+      }
+        
+        )
       .catch(err => console.log(err))
   }
 
@@ -82,7 +119,7 @@ class App extends Component {
           <div>
           <Navigation onRouteChange={this.onRouteChange} />
           <div className="ml">
-            <Rank />
+            <Rank entries={this.state.user.entries}/>
             <ImageLinkForm onInputChange={this.onInputChange} onSubmit={this.onSubmit}/>
             <FaceRecognition imageUrl={this.state.imageUrl} boundingBox={this.state.box} />
           </div>
@@ -90,7 +127,7 @@ class App extends Component {
 
           : (
             this.state.route === 'signin' ? <Login onRouteChange={this.onRouteChange}/> 
-            : <Signup onRouteChange={this.onRouteChange}/>
+            : <Signup loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
           )          
         }
         
