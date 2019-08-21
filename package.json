@@ -3,36 +3,26 @@
   "version": "0.1.0",
   "private": true,
   "description": "",
-  "dependencies": {
-    "clarifai": "^2.9.0",
-    "lodash": "4.17.13",
-    "normalize.css": "^8.0.1",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-scripts": "3.0.1"
-  },
+  "main": "index.js",
+  "workspaces": [
+    "client",
+    "server"
+  ],
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "postinstall": "npm install --prefix server && npm install --prefix client",
+    "client:start": "npm run start --prefix client",
+    "client:build": "npm run build --prefix client",
+    "server:start": "npm run start --prefix server",
+    "start": "concurrently --kill-others-on-fail \"npm run server:start\" \"npm run client:start\""
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "repository": "https://github.com/murshidazher/emotive.git",
+  "author": "murshidazher <murshidazher@yahoo.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/murshidazher/emotive/issues"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
+  "homepage": "https://github.com/murshidazher/emotive#readme",
   "devDependencies": {
-    "concurrently": "^4.1.1"
+    "concurrently": "^4.1.2"
   }
 }
