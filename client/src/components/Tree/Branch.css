@@ -48,16 +48,13 @@
     padding-top: 1.25em;
 }
 
-.leaf>.checkbox:last-child {
-    /* color: rgb(0, 255, 34); */
-    /* padding-bottom: 3.375rem; */
-}
+
 
 .input-group:hover, 
 .input-group:focus{
-	color: green;
+	/* color: green; */
     cursor: pointer;
-    filter: invert(30%) sepia(29%) saturate(309%) hue-rotate(192deg) brightness(100%) contrast(90%);
+    /* filter: invert(30%) sepia(29%) saturate(309%) hue-rotate(192deg) brightness(100%) contrast(90%); */
     
 } 
 

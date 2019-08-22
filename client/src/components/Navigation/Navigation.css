@@ -1,0 +1,75 @@
+.side-bar {
+    position: fixed;
+    width: 7.5rem;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #FFFFFF;
+}
+
+.menu-btn {
+    margin: auto;
+    margin-top: 44px;
+    text-align: center;
+    display: block;
+    width: 20px;
+    height: 16px;
+    background-color: #0044E9;
+}
+
+.signout-btn {
+    position: relative;
+    margin: auto;
+    text-align: center;
+    display: block;
+    width: 20px;
+    height: 16px;
+    background-color: #0044E9;
+}
+
+.signout-wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    /* margin: auto; */
+    margin-bottom: 44px;
+    text-align: center;
+    display: block;
+}
+
+.logo-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    display: block;
+}
+
+.side-options {
+    position: fixed;
+    width: 22rem;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background-color: #FCFCFD;
+}
+
+.side-options__name {
+    margin: auto;
+    margin-top: 1.5rem;
+    height: 78px;
+    width: 90%;
+    background: #FFFFFF;
+    box-shadow: 0 2px 40px 6px #e7effd5c;
+    border-radius: 9px;
+}
+
+.side-options__opt {
+    margin: auto;
+    width: 90%;
+    margin-top: 4.5rem;
+}
+
+

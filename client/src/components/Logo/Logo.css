@@ -3,11 +3,11 @@
     text-align: center;
     
     display: block;
-    width: 80px;
-    height: 80px;
+    width: 56px;
+    height: 56px;
     margin: auto;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    /* margin-top: 2rem; */
+    /* margin-bottom: 2rem; */
 }
 
 svg:not(:root) {

@@ -12,7 +12,7 @@ import './App.css';
     input: '',
     imageUrl: '',
     box: {},
-    route: 'signin',
+    route: 'home', //signin
     logged: 'false',
     user: {
       id: '',
@@ -88,11 +88,16 @@ class App extends Component {
     const width = Number(img.width);
     const height = Number(img.height);
     console.log(width + ',' + height)
+    console.log(width + ',' + height)
+    console.log(face.left_col * width)
+    console.log(face.top_row * height)
+    console.log(width * 2 - (face.right_col * width))
+    console.log(height - (face.bottom_row * height))
     return {
       leftCol: face.left_col * width,
       topRow: face.top_row * height,
-      rightCol: width - (face.right_col * width),
-      bottomRow: height - (face.bottom_row * height), 
+      rightCol: (width - (face.right_col * width)),
+      bottomRow: (height - (face.bottom_row * height)), 
     }
   }
 
@@ -120,9 +125,16 @@ class App extends Component {
           <div>
           <Navigation onRouteChange={this.onRouteChange} />
           <div className="ml">
+            <div className="wrapper">
+            <div className="box" >
+              <div className="box__left blue"></div>
+              <div className="box__right blue-light"></div>
+            </div>
             <Rank name={this.state.user.name} entries={this.state.user.entries}/>
             <ImageLinkForm onInputChange={this.onInputChange} onSubmit={this.onSubmit}/>
             <FaceRecognition imageUrl={this.state.imageUrl} boundingBox={this.state.box} />
+            </div>
+            
           </div>
           </div>
 

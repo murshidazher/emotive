@@ -8,6 +8,9 @@
     height: auto;
 }
 
+
+
+
 .bounding-box {
     position: absolute;
     box-shadow: 0 0 0 3px #149df2 inset;
@@ -37,5 +40,31 @@
     width: 60px;
     height: 60px;
     border: 4px;
+}
+
+
+.outer-div
+{
+     height: 60px;
+     width: 60px;
+     overflow: hidden; 
+}
+.inner-div
+{
+     height: 100%;
+     width: 100%;
+     /* background-size: cover; */
+     /* background-position: center; */
+     transition: all 0.7s ease;
+     /* background-size: 60px; */
+     /* background-size: contain; */
+}
+
+.inner-img {
+    background-position-x: 30px;
+
+    /* background-size: cover; */
+     /* background-position: center; */
+     object-fit: cover;
 }
 
