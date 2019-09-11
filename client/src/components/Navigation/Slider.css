@@ -40,7 +40,7 @@
   
   .barCnt .preBar {
     position: absolute;
-    background-color: blue;
+    background-color: #0044E9;
     height: 2px;
     line-height: 2px;
     z-index: 200;
@@ -75,7 +75,7 @@
     height: 14px;
     width: 14px;
     border-radius: 50%;
-    background: blue;
+    background: #0044E9;
     margin-top: -5px;
     z-index: 400;
   }
@@ -101,7 +101,7 @@
     height: 16px;
     width: 16px;
     border-radius: 50%;
-    background: blue;
+    background: #0044E9;
     z-index: 400;
   }
   

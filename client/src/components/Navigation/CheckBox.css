@@ -57,9 +57,9 @@ input[type="checkbox"]+label::before {
 
 /* Checked State */
 input[type="checkbox"]:not(:disabled):checked+label::before {
-    background-color: #6848ba;
+    background-color: #0044E9;
     box-shadow: none;
-    border-color: #6848ba;
+    border-color: #0044E9;
 }
 
 
@@ -106,10 +106,10 @@ input[type="checkbox"]:not(:disabled):checked+label::before {
 /* focus */
 input[type="checkbox"]:not(:disabled):checked:active+label::before,
 input[type="checkbox"]:focus+label::before {
-    border-color: #6848ba;
+    border-color: #0044E9;
     /* fix ios bug */
     /* --color-shadow: hsla(var(--color-primary-h), var(--color-primary-s), var(--color-primary-l), 0.2);  */
-    box-shadow: 0 0 0 .125em rgba(#8064c4, 0.15);
+    box-shadow: 0 0 0 .125em rgba(rgb(17, 86, 245), 0.15);
 }
 
 /* checkbox__box
