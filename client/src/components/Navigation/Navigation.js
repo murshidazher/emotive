@@ -1,5 +1,4 @@
-import React from 'react';
-import SideMenu from './SideMenu';
+import React, {Component} from 'react';
 import './Navigation.css';
 import Logo from '../Logo/Logo';
 import LogoImage from '../../img/logo.svg';
@@ -9,11 +8,34 @@ import Branch from '../Tree/Branch'
 import CheckBox from '../Navigation/CheckBox'
 import Slider from './Slider';
 
-const Navigation = (props) => {
-    return (
-        <div>  
+
+class Navigation extends Component {
+
+    /*
+    *
+    * @route - keeps track of our current position in page transition 
+    */
+    constructor(props) {
+        super();
+        this.state = {
+            menu: false
+        }
+    }
+
+
+    onMenuClick = (event) => {
+        this.setState({menu: !this.state.menu});
+    }
+
+    render() {
+        return (
+            <div> 
+                <div className={(this.state.menu ? 'overlay' : '')}  onClick={this.onMenuClick}></div> 
             <div className="side-bar">
-                     <div className="menu-btn"></div>
+                    <div  className="menu-wrapper">
+                        <div className="menu-btn" onClick={this.onMenuClick}></div>
+                    </div>
+                    
 
                     <div className="logo-wrapper">
                         <Logo backgroundImage={LogoImage}/>
@@ -25,11 +47,18 @@ const Navigation = (props) => {
             </div>             
             {/* <SideMenu onClick={props.onRouteChange} /> */}
 
-            <div className="side-options">
+            <div className={"side-options z9999 " + (this.state.menu ? '' : 'slide-in')}>
                 <div className="side-options__name">
 
                 </div>
 
+                {/* <div className="face__wrapper">
+                    <div className="face">
+    
+                    </div> 
+                </div> */}
+                
+                
                 <div className="side-options__opt">
                 <Tree >
                     <Branch title='Classifications'>
@@ -61,8 +90,9 @@ const Navigation = (props) => {
             </div>
 
         </div>
-    );
-
+        );
+    }
 }
+
 
 export default Navigation;

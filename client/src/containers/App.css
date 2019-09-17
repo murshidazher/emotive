@@ -145,8 +145,9 @@ ul {
 .ml {
   margin: 4.625rem 22rem 0 7.5rem;
 }
+
 .wrapper {
-  margin: 0 1.25rem;
+  margin: 0 2.25rem 0 4.625rem;
 }
 
 .box {
@@ -154,7 +155,7 @@ ul {
   margin: auto;
     margin-top: 1.5rem;
     margin-bottom: 4.125rem;
-    width: 95%;
+    /* width: 95%; */
     background: #FFFFFF;
     box-shadow: 0 2px 40px 6px #e7effd5c;
     /* border-radius: 9px; */
@@ -520,6 +521,16 @@ ul {
 @media screen and (min-width: 30em) and (max-width: 60em) {
   .w-50-m {
       width: 50%;
+  }
+}
+
+@media screen and (max-width: 60em) {
+  .ml {
+    margin: 4.625rem 2rem 0 ;
+  }
+  
+  .wrapper {
+    margin: 0 ;
   }
 }
 

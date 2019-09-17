@@ -50,20 +50,9 @@ class FaceRecognition extends Component {
                         </div>
                     </div>
     
-                    <svg width="0" height="0">
-                    <defs>
-                        <clipPath id="myClip">
-                        <circle cx="150" cy="150" r="50" />
-      <rect x="150" y="150" width="100" height="100" />
-    </clipPath>
-                    </defs>
-                    </svg>
+                 
     
-                    <div className="face__wrapper">
-                    <div className="face">
-    
-                      </div> 
-                    </div>
+                    
                     </div>
 
 

@@ -1,13 +1,12 @@
+
+
 .logo {
     border-radius: 2px solid black;
     text-align: center;
-    
     display: block;
     width: 56px;
     height: 56px;
     margin: auto;
-    /* margin-top: 2rem; */
-    /* margin-bottom: 2rem; */
 }
 
 svg:not(:root) {
