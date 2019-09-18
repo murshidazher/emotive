@@ -49,14 +49,31 @@ class Navigation extends Component {
 
             <div className={"side-options z9999 " + (this.state.menu ? '' : 'slide-in')}>
                 <div className="side-options__name">
-
+                    <div>L</div>
+                    <div>Your entry counts</div>
+                    
+                    <div>12</div>
                 </div>
 
-                {/* <div className="face__wrapper">
+                <div className="face__wrapper">
                     <div className="face">
     
                     </div> 
-                </div> */}
+                </div>
+
+                <div className="user">
+                    <div className="user__name">
+                        Isobelle Patterson
+                    </div>
+                    <div className="user__location">
+                        Aurora
+                    </div>
+                    <div className="user__phone">
+                        +1 877 714 68 05 
+                    </div>
+                </div>
+
+                
                 
                 
                 <div className="side-options__opt">
@@ -83,8 +100,6 @@ class Navigation extends Component {
                         <CheckBox title='Hair Color' id='hair-color'/>
                         <CheckBox title='Hair Style' id='hair-style'/>
                     </Branch>
-
-                    
                 </Tree>
                 </div>
             </div>

@@ -74,10 +74,11 @@
     margin: auto;
     margin-top: 1.5rem;
     height: 78px;
-    width: 90%;
+    width: 70%;
     background: #FFFFFF;
     box-shadow: 0 2px 40px 6px #e7effd5c;
     border-radius: 9px;
+    padding: 24px 34px;
 }
 
 .side-options__opt {
@@ -88,20 +89,30 @@
 
 
 .face {
-
     width: 100px;
     min-height: 100px;
     background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/Harry-Potter-1-.jpg) center center;
     background-size: cover;
     transition: 0.4s cubic-bezier(1, -1, 0, 2);
-    /* clip-path: polygon( 1.33975% 0%, 1% 0.60307%, 1% 0.15192%, 0% 100% , 100% 100% , 100% 0); */
-    /* rounded corners... not sure if a thing anymore */
-    clip-path: inset(0% 0% 10% 10% round 80px);
-    transform: scale(.3);
+    clip-path: inset(0% 0% 5% 5% round 20px);
 }
 
-.face:hover {
-    /* clip-path: polygon(50% 19%, 0 76%, 100% 76%); */
+.face__wrapper {
+    /* text-align: center; */
+    padding: 60px 0 24px;
+    margin: 0 auto;
+     width: 100px;
+}
+
+.user {
+    text-align: center;
+    font-size: 1rem;
+    
+}
+
+.user__name {
+    text-align: center;
+    font-size: 1.2rem;
 }
 
 @media screen and (max-width: 60em) {

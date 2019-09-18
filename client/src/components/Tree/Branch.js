@@ -11,7 +11,7 @@ class Branch extends Component {
     }
 
     onToggle = (event) => { 
-        
+        alert('cccccclick');
         this.setState({active: !this.state.active});
         console.log(this.state.active);
     }
@@ -19,7 +19,7 @@ class Branch extends Component {
     render() {
         return (
             <ul className="branch">
-                <div className="input-group" onClick={this.onToggle}>
+                <div className="header-group" onClick={this.onToggle}>
                     <span className="branch__text" >{this.props.title}</span>
                     <svg className={this.state.active ? 'icon chevron-down':'icon chevron-up'}></svg>
                 </div>

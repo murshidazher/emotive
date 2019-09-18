@@ -32,37 +32,7 @@ class FaceRecognition extends Component {
                     <img id='inputImg' className="img" src={imageUrl} alt='' width='500px' heigh='auto' />
                     
                     <div className="bounding-box" style={{top: boundingBox.topRow, right: boundingBox.rightCol, left: boundingBox.leftCol, bottom: boundingBox.bottomRow}}></div>
-    
-    
-                    <div className="">
-    
-                    </div>
-    
-                    <div className="outer-div">
-                        {/* <div className="inner-div" style={{background: `url(${imageUrl}) -${boundingBox.topRow}px -${boundingBox.leftCol}px -${boundingBox.topRow}px`}}> */}
-                        <div className="inner-div" style={{background: `url(${this.state.src}) ${392.31978}px -${164.84566}px`, backgroundSize: '200px'}}>
-    
-    {/*                     {leftCol: 164.84566, topRow: 138.088245, rightCol: 179.34146499999997, bottomRow: 392.31978}
-    
-    
-     */}
-     
-                        </div>
-                    </div>
-    
-                 
-    
-                    
-                    </div>
-
-
-                    <div>
-
-                    <img ref={this.myRef} alt="clipper" id="preview" />
-        
-                    </div>
-            
-                
+                </div>
             </div>       
         );
     }

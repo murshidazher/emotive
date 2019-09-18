@@ -126,13 +126,43 @@ class App extends Component {
           <Navigation onRouteChange={this.onRouteChange} />
           <div className="ml">
             <div className="wrapper">
+
+              <div>
+                Active Search
+              </div>
             <div className="box" >
-              <div className="box__left blue"></div>
-              <div className="box__right blue-light"></div>
+              <div className="box__left blue">
+                <div className="box__content">
+                <div className="box__details">
+                  <div className="">26.4.2014 &mdash; 02:30 PM</div>
+                </div>
+                </div>
+                
+                
+              </div>
+              <div className="box__right blue-light">
+              <div className="box__content">
+              <div className="face__wrapper--small">
+                
+                <div className="face--small">
+
+                </div> 
+                <span className="image__name">
+                  Image Name
+                </span>
             </div>
-            <Rank name={this.state.user.name} entries={this.state.user.entries}/>
-            <ImageLinkForm onInputChange={this.onInputChange} onSubmit={this.onSubmit}/>
-            <FaceRecognition imageUrl={this.state.imageUrl} boundingBox={this.state.box} />
+              </div>
+              
+                
+              </div>
+            </div>
+
+            <div>
+              <Rank name={this.state.user.name} entries={this.state.user.entries}/>
+              <ImageLinkForm onInputChange={this.onInputChange} onSubmit={this.onSubmit}/>
+              <FaceRecognition imageUrl={this.state.imageUrl} boundingBox={this.state.box} />
+            </div>
+          
             </div>
             
           </div>

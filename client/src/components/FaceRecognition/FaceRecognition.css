@@ -20,28 +20,6 @@
     cursor: pointer;
 }
 
-.face {
-        
-    width: 500px;
-    min-height: 500px;
-    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/Harry-Potter-1-.jpg) center center;
-  background-size: cover;
-  transition: 0.4s cubic-bezier(1, -1, 0, 2);
-  /* clip-path: polygon( 1.33975% 0%, 1% 0.60307%, 1% 0.15192%, 0% 100% , 100% 100% , 100% 0); */
-  /* rounded corners... not sure if a thing anymore */
-  clip-path: inset(0% 0% 10% 10% round 80px);
-  transform: scale(.3);
-}
-.face:hover {
-  /* clip-path: polygon(50% 19%, 0 76%, 100% 76%); */
-}
-
-.face__wrapper {
-    width: 60px;
-    height: 60px;
-    border: 4px;
-}
-
 
 .outer-div
 {

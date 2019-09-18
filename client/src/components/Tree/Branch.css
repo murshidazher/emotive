@@ -50,12 +50,9 @@
 
 
 
-.input-group:hover, 
-.input-group:focus{
-	/* color: green; */
+.header-group:hover, 
+.header-group:focus{
     cursor: pointer;
-    /* filter: invert(30%) sepia(29%) saturate(309%) hue-rotate(192deg) brightness(100%) contrast(90%); */
-    
 } 
 
 
@@ -77,7 +74,7 @@
 }
 
 
-.input-group {
+.header-group{
     position: relative;
     flex: 1 1 auto;
     /* width: 1%; */
