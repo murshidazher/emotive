@@ -16,7 +16,6 @@
     top: 5px;
     width: 20px;
     height: 16px;
-    background-color: #0044E9;
 }
 
 .signout-btn {
@@ -27,7 +26,6 @@
     display: block;
     width: 20px;
     height: 16px;
-    background-color: #0044E9;
 }
 
 
@@ -70,15 +68,17 @@
     background-color: #FCFCFD;
 }
 
-.side-options__name {
+.side-options__details {
     margin: auto;
     margin-top: 1.5rem;
     height: 78px;
-    width: 70%;
+    width: 90%;
     background: #FFFFFF;
     box-shadow: 0 2px 40px 6px #e7effd5c;
     border-radius: 9px;
-    padding: 24px 34px;
+    
+    position: relative;
+    vertical-align: middle;
 }
 
 .side-options__opt {
@@ -262,12 +262,11 @@
     .menu-btn {
         position: relative;
         margin: auto;
-        margin-top: 44px;
+        margin-top: 78px;
         text-align: center;
         display: block;
         width: 20px;
         height: 16px;
-        background-color: #0044E9;
     }
 
     .menu-wrapper {
@@ -288,7 +287,7 @@
         display: block;
         width: 20px;
         height: 16px;
-        background-color: #0044E9;
+        opacity: .4;
     }
 
     .signout-wrapper {
@@ -297,7 +296,7 @@
         left: 50%;
         transform: translateX(-50%);
         /* margin: auto; */
-        margin-bottom: 54px;
+        margin-bottom: 78px;
         text-align: center;
         display: block;
     }
@@ -305,4 +304,42 @@
 
 .z9999 {
     z-index: 9999;
+}
+
+.side-options__details__icon {
+    position: absolute;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 7px 0;
+}
+
+.side-options__details__entry {
+    position: absolute;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 9px 35px;
+}
+
+.side-options__details__count {
+    position: absolute;
+  display: inline-block;
+  vertical-align: middle;
+  font-weight: 600;
+  font-size: 1.8rem;
+  right: 0;
+  padding-right: 34px;
+}
+
+.side-options__details__wrapper {
+    position: relative;
+    padding: 24px 34px;
+}
+
+.icon-count {
+    position: relative;
+    margin: auto;
+    text-align: center;
+    display: block;
+    width: 20px;
+    height: 22px;
 }

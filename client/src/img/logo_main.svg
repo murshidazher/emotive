@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Dribble" transform="translate(-546.000000, -176.000000)">
+            <g id="Group" transform="translate(546.145079, 176.056419)">
+                <rect id="Rectangle" fill="#1051F6" x="41.2246055" y="41.384526" width="18.037518" height="18.037518"></rect>
+                <polygon id="Path" fill="#1051F6" points="67.0968297 32.656855 99.6008917 16.6674781 84.5494251 15.5757824 82.8162219 0.678101264"></polygon>
+                <polygon id="Path-Copy" fill="#1051F6" transform="translate(16.610044, 16.667478) scale(-1, 1) translate(-16.610044, -16.667478) " points="0.358012985 32.656855 32.8620749 16.6674781 17.8106084 15.5757824 16.0774052 0.678101264"></polygon>
+                <polygon id="Path-Copy-3" fill="#1051F6" transform="translate(83.348861, 83.406295) scale(1, -1) translate(-83.348861, -83.406295) " points="67.0968297 99.3956717 99.6008917 83.4062948 84.5494251 82.3145991 82.8162219 67.416918"></polygon>
+                <polygon id="Path-Copy-2" fill="#1051F6" transform="translate(16.610044, 83.406295) scale(-1, -1) translate(-16.610044, -83.406295) " points="0.358012985 99.3956717 32.8620749 83.4062948 17.8106084 82.3145991 16.0774052 67.416918"></polygon>
+                <polygon id="Path-2" fill="#1051F6" points="50.0900829 8.65098765 36.5641204 21.8883668 32.2871581 17.2993696 50.0900829 0 67.5731557 17.2993696 63.5922682 21.8883668"></polygon>
+                <polygon id="Path-2-Copy" fill="#1051F6" transform="translate(49.930157, 88.505511) scale(1, -1) translate(-49.930157, -88.505511) " points="50.0900829 86.2123152 36.5641204 99.4496943 32.2871581 94.8606971 50.0900829 77.5613276 67.5731557 94.8606971 63.5922682 99.4496943"></polygon>
+                <polygon id="Path-2-Copy-2" fill="#1051F6" transform="translate(12.231743, 49.544473) scale(-1, 1) rotate(90.000000) translate(-12.231743, -49.544473) " points="12.3916694 47.2512771 -1.13429311 60.4886562 -5.41125541 55.899659 12.3916694 38.6002894 29.8747422 55.899659 25.8938547 60.4886562"></polygon>
+                <polygon id="Path-2-Copy-3" fill="#1051F6" transform="translate(87.989319, 49.544473) rotate(90.000000) translate(-87.989319, -49.544473) " points="88.1492452 47.2512771 74.6232827 60.4886562 70.3463203 55.899659 88.1492452 38.6002894 105.632318 55.899659 101.65143 60.4886562"></polygon>
+                <circle id="Oval" fill="#ED4356" cx="58.8000648" cy="41.7179031" r="5.41125541"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

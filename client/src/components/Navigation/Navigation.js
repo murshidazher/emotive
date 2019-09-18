@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import './Navigation.css';
 import Logo from '../Logo/Logo';
-import LogoImage from '../../img/logo.svg';
+import LogoImage from '../../img/logo_main.svg';
+import IconMenu from '../../img/icons/menu.svg';
+import IconSignOut from '../../img/icons/logout.svg';
+import IconCount from '../../img/icons/codesandbox.svg';
 
 import Tree from '../Tree/Tree'
 import Branch from '../Tree/Branch'
@@ -33,7 +36,8 @@ class Navigation extends Component {
                 <div className={(this.state.menu ? 'overlay' : '')}  onClick={this.onMenuClick}></div> 
             <div className="side-bar">
                     <div  className="menu-wrapper">
-                        <div className="menu-btn" onClick={this.onMenuClick}></div>
+                        <svg className="menu-btn" onClick={this.onMenuClick} shapeRendering="geometricPrecision" style={{backgroundImage: `url(${IconMenu})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center'}}>
+                        </svg>
                     </div>
                     
 
@@ -42,17 +46,24 @@ class Navigation extends Component {
                     </div>
                 
                     <div  className="signout-wrapper">
-                        <div className="signout-btn"></div>
+                        <svg className="signout-btn" onClick={this.onMenuClick} shapeRendering="geometricPrecision" style={{backgroundImage: `url(${IconSignOut})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center'}}>
+                        </svg>
                     </div>
             </div>             
             {/* <SideMenu onClick={props.onRouteChange} /> */}
 
             <div className={"side-options z9999 " + (this.state.menu ? '' : 'slide-in')}>
-                <div className="side-options__name">
-                    <div>L</div>
-                    <div>Your entry counts</div>
+                <div className="side-options__details">
+
+                    <div className="side-options__details__wrapper">
+                    <div className="side-options__details__icon">
+                        <svg className="icon-count" onClick={this.onMenuClick} shapeRendering="geometricPrecision" style={{backgroundImage: `url(${IconCount})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center'}}>
+                            </svg>
+                    </div>
+                    <div className="side-options__details__entry">Your entry counts</div>
+                    <div className="side-options__details__count">12</div>
+                    </div>
                     
-                    <div>12</div>
                 </div>
 
                 <div className="face__wrapper">

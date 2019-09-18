@@ -127,7 +127,7 @@ class App extends Component {
           <div className="ml">
             <div className="wrapper">
 
-              <div>
+              <div className="sub__title">
                 Active Search
               </div>
             <div className="box" >
