@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/murshidazher/emotive/issues"
   },
-  "homepage": "https://github.com/murshidazher/emotive#readme",
+  "homepage": "https://github.com/murshidazher/emotive",
   "devDependencies": {
     "concurrently": "^4.1.2"
   }

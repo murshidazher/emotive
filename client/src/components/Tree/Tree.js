@@ -1,13 +1,8 @@
-import React from 'react';
-import './Tree.css';
+import React from "react";
+import "./Tree.css";
 
-const Tree = (props) => {
-    return (
-        <ul className="tree">
-            {props.children}
-        </ul>
-    );
-
-}
+const Tree = props => {
+  return <ul className="tree">{props.children}</ul>;
+};
 
 export default Tree;
