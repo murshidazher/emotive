@@ -152,32 +152,35 @@ ul {
 }
 
 .box {
-  height: 126px;
+  height: 72px;
   margin: auto;
   margin-top: 1.5rem;
-  margin-bottom: 4.125rem;
+  margin-bottom: 6.125rem;
   box-sizing: border-box;
   
   background: #FFFFFF;
   box-shadow: 0 2px 40px 6px #e7effd5c;
   color: #FFF;
+  position: relative;
     
 }
 .box__left {
   height: 100%;
   width: 100%;
   display: inline-block;
+  position: relative;
 }
 
 .box__right {
   height: 100%;
   width: 100%;
   display: inline-block;
+  position: relative;
 }
 
 
 .box__content {
-  padding: 44px 42px;
+  padding: 0 21px;
 }
 
 .blue {
@@ -539,13 +542,21 @@ ul {
     margin: 4.625rem 22rem 0 7.5rem;
   } 
 
+  .box {
+    margin-bottom: 4.125rem;
+  }
+
   .box__left {
     width: 55%;
+    position: absolute;
+    top: 0px;
    
   }
   
   .box__right {
     width: 45%;
+    position: absolute;
+    right: 0px;
   }
 
 }
@@ -586,6 +597,7 @@ ul {
   position: relative;
   width:auto;
   vertical-align: middle;
+  padding-top: 22px;
 }
 
 .image__name {
@@ -600,8 +612,34 @@ ul {
   position: relative;
   width:auto;
   vertical-align: middle;
+  padding-top: 24px;
+  overflow-wrap: normal;
 }
 
 .sub__title {
   font-size: 1.2rem;
+}
+
+.f-icon {
+  position: relative;
+  margin: auto;
+  text-align: center;
+  display: block;
+}
+
+.f-icon-calendar {
+  width: 30px;
+  height: 24px;
+  filter: invert(99%) sepia(0%) saturate(1852%) hue-rotate(130deg) brightness(120%) contrast(100%);
+}
+
+.box__details__content {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.box__details__icon-wrapper {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 12px;
 }

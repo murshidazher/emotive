@@ -5,6 +5,10 @@ import ImageLinkForm from '../components/ImageLinkForm/ImageLinkForm';
 import Rank from '../components/Rank/Rank';
 import Login from '../components/Login/Login';
 import Signup from '../components/Signup/Signup';
+
+import IconCalendar from '../img/icons/calendar.svg';
+
+
 import './App.css';
 
 
@@ -134,7 +138,11 @@ class App extends Component {
               <div className="box__left blue">
                 <div className="box__content">
                 <div className="box__details">
-                  <div className="">26.4.2014 &mdash; 02:30 PM</div>
+                  <div className="box__details__icon-wrapper">
+                    <svg className="f-icon f-icon-calendar" shapeRendering="geometricPrecision" style={{backgroundImage: `url(${IconCalendar})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center'}}>
+                        </svg>
+                  </div>
+                  <div className="box__details__content">26.4.2014 &mdash; 02:30 PM</div>
                 </div>
                 </div>
                 

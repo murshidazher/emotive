@@ -5,6 +5,7 @@ import LogoImage from '../../img/logo_main.svg';
 import IconMenu from '../../img/icons/menu.svg';
 import IconSignOut from '../../img/icons/logout.svg';
 import IconCount from '../../img/icons/codesandbox.svg';
+import IconPhone from '../../img/icons/phone.svg';
 
 import Tree from '../Tree/Tree'
 import Branch from '../Tree/Branch'
@@ -57,7 +58,7 @@ class Navigation extends Component {
 
                     <div className="side-options__details__wrapper">
                     <div className="side-options__details__icon">
-                        <svg className="icon-count" onClick={this.onMenuClick} shapeRendering="geometricPrecision" style={{backgroundImage: `url(${IconCount})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center'}}>
+                        <svg className="f-icon f-icon-count" shapeRendering="geometricPrecision" style={{backgroundImage: `url(${IconCount})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center'}}>
                             </svg>
                     </div>
                     <div className="side-options__details__entry">Your entry counts</div>
@@ -79,8 +80,16 @@ class Navigation extends Component {
                     <div className="user__location">
                         Aurora
                     </div>
+
+
                     <div className="user__phone">
-                        +1 877 714 68 05 
+                    <div className="user__phone__icon">
+                        <svg className="f-icon f-icon-phone" shapeRendering="geometricPrecision" style={{backgroundImage: `url(${IconPhone})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center'}}>
+                            </svg>
+                    </div>
+
+                    <span className="user__phone__content">+1 877 714 68 05</span>
+                    
                     </div>
                 </div>
 
