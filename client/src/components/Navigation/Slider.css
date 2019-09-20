@@ -112,7 +112,9 @@
   .refresh__wrapper {
     position: relative;
     height: 14px;
+    cursor: pointer;
   }
+
   .refresh {
     
     background:url(../../img/icons/rotate-cw.svg) no-repeat;

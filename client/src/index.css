@@ -16,3 +16,7 @@ code {
 .bg-l-silver {
   background-color: #F9FAFD;
 }
+
+* {
+  box-sizing: border-box;
+}

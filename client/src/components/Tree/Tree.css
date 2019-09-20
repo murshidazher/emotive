@@ -20,6 +20,10 @@
     display: none;
 }
 
+.tree>.branch:first-child {
+    padding-top: .75rem;
+}
+
 .tree>.branch:not(:first-child) {
     padding-top: 3.375rem;
 }

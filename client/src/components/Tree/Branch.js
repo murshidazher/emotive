@@ -11,7 +11,6 @@ class Branch extends Component {
 
   onToggle = event => {
     this.setState({ active: !this.state.active });
-    console.log(this.state.active);
   };
 
   render() {
@@ -19,6 +18,7 @@ class Branch extends Component {
       <ul className="branch">
         <div className="header-group" onClick={this.onToggle}>
           <span className="branch__text">{this.props.title}</span>
+          <span className="branch__noc">{this.props.numContent}</span>
           <svg
             className={
               this.state.active ? "icon chevron-down" : "icon chevron-up"

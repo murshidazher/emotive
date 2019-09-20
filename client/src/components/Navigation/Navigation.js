@@ -28,6 +28,10 @@ class Navigation extends Component {
     this.setState({ menu: !this.state.menu });
   };
 
+  formatDigit = (d) => {
+    return (d < 10) ? '0' + d.toString() : d.toString();
+  }
+
   render() {
     return (
       <div>
@@ -89,7 +93,7 @@ class Navigation extends Component {
               <div className="side-options__details__entry">
                 Your entry counts
               </div>
-              <div className="side-options__details__count">12</div>
+              <div className="side-options__details__count">{this.formatDigit(2)}</div>
             </div>
           </div>
 
@@ -120,7 +124,7 @@ class Navigation extends Component {
 
           <div className="side-options__opt">
             <Tree>
-              <Branch title="Classifications">
+              <Branch title="Classifications" numContent="4">
                 <CheckBox title="Age" id="age" />
                 <CheckBox title="Gender" id="gender" />
                 <CheckBox title="Ethnicity" id="ethnicity" />
@@ -130,6 +134,7 @@ class Navigation extends Component {
               <Branch
                 title="Number of Facial Points"
                 style={{ paddingLeft: "0" }}
+                numContent="1"
               >
                 <Slider
                   title="Points"
@@ -142,7 +147,7 @@ class Navigation extends Component {
                 />
               </Branch>
 
-              <Branch title="Measurement">
+              <Branch title="Measurement" numContent="3">
                 <CheckBox title="Skin Color" id="skin-color" />
                 <CheckBox title="Hair Color" id="hair-color" />
                 <CheckBox title="Hair Style" id="hair-style" />

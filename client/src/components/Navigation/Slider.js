@@ -17,11 +17,15 @@ class Slider extends Component {
     return (this.props.width * this.state.value) / 100;
   };
 
+  onRefresh = () => {
+    this.setState({ value: 50 });
+  }
+
   render() {
     return (
       <div className="slider" style={{ width: this.props.width + "px" }}>
         <div className="slider__comp">
-          <div className="refresh__wrapper ">
+          <div className="refresh__wrapper" onClick={this.onRefresh}>
             <svg className="refresh"></svg>
           </div>
           {/*<div className="slider__desc">

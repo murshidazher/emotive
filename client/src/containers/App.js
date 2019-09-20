@@ -26,6 +26,12 @@ const initialState = {
   }
 };
 
+/**
+ * https://cdn.shopify.com/s/files/1/0123/7811/2057/files/shutterstock_753502027-3_1500x.jpg?v=1550093127
+ * https://cdn.shopify.com/s/files/1/0123/7811/2057/files/shutterstock_627263492-7_4348aaa0-2880-438e-86c7-369f13e4880c_1500x.jpg?v=1550093965
+ * https://cdn.shopify.com/s/files/1/0123/7811/2057/files/shutterstock_788577838-2_1500x.jpg?v=1550092632
+ */
+
 class App extends Component {
   /*
    *

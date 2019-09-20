@@ -536,7 +536,7 @@ ul {
 
 
 
-@media screen and (min-width: 40em) {
+@media screen and (min-width: 45em) {
 
   .ml {
     margin: 4.625rem 22rem 0 7.5rem;
@@ -561,7 +561,8 @@ ul {
 
 }
 
-@media screen and (max-width: 60em) {
+
+@media screen and (max-width: 66em) {
 
   .ml {
     margin: 7.5rem 2rem 0 ;
@@ -586,7 +587,7 @@ ul {
   display: inline-block;
   width: 30px;
   min-height: 30px;
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/Harry-Potter-1-.jpg) center center;
+  background: url(https://cdn.shopify.com/s/files/1/0123/7811/2057/files/shutterstock_753502027-3_1500x.jpg?v=1550093127) center center;
   background-size: cover;
   transition: 0.4s cubic-bezier(1, -1, 0, 2);
   clip-path: inset(0% 0% 5% 5% round 5px);
