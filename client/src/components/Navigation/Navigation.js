@@ -54,7 +54,7 @@ class Navigation extends Component {
           </div>
 
           <div className="logo-wrapper">
-            <Logo backgroundImage={LogoImage} />
+            <Logo backgroundImage={LogoImage} margin='auto' />
           </div>
 
           <div className="signout-wrapper">
@@ -93,7 +93,7 @@ class Navigation extends Component {
               <div className="side-options__details__entry">
                 Your entry counts
               </div>
-              <div className="side-options__details__count">{this.formatDigit(2)}</div>
+              <div className="side-options__details__count">{this.formatDigit(this.props.entries)}</div>
             </div>
           </div>
 
@@ -102,7 +102,7 @@ class Navigation extends Component {
           </div>
 
           <div className="user">
-            <div className="user__name">Isobelle Patterson</div>
+            <div className="user__name">{this.props.name}Isobelle Patterson</div>
             <div className="user__location">Aurora</div>
 
             <div className="user__phone">

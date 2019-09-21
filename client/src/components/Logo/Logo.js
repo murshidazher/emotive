@@ -10,7 +10,8 @@ const Logo = props => {
         style={{
           backgroundImage: `url(${props.backgroundImage})`,
           backgroundRepeat: "no-repeat",
-          backgroundPosition: "center"
+          backgroundPosition: "center",
+          margin: `${props.margin}`
         }}
       ></svg>
     </a>

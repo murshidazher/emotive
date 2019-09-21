@@ -2,11 +2,16 @@ import React, { Component } from "react";
 import Navigation from "../components/Navigation/Navigation";
 import FaceRecognition from "../components/FaceRecognition/FaceRecognition";
 import ImageLinkForm from "../components/ImageLinkForm/ImageLinkForm";
-import Rank from "../components/Rank/Rank";
 import Login from "../components/Login/Login";
 import Signup from "../components/Signup/Signup";
+import Logo from "../components/Logo/Logo";
+import LogoImage from "../img/logo_main.svg";
 
 import IconCalendar from "../img/icons/calendar.svg";
+import IconAnalyze from "../img/icons/activity.svg";
+import IconPointer from "../img/icons/mouse-pointer.svg";
+import IconFacial from "../img/icons/aperture.svg";
+import IconDemography from "../img/icons/target.svg";
 
 import "./App.css";
 
@@ -15,7 +20,7 @@ const initialState = {
   input: "",
   imageUrl: "",
   box: {},
-  route: "home", // signin
+  route: "signin", // home
   logged: "false",
   user: {
     id: "",
@@ -126,7 +131,9 @@ class App extends Component {
       <div className="App">
         {this.state.route === "home" ? (
           <div>
-            <Navigation onRouteChange={this.onRouteChange} />
+            <Navigation onRouteChange={this.onRouteChange}
+              name={this.state.user.name}
+              entries={this.state.user.entries}/>
             <div className="ml">
               <div className="wrapper">
                 <div className="sub__title">Active Search</div>
@@ -162,10 +169,6 @@ class App extends Component {
                 </div>
 
                 <div>
-                  <Rank
-                    name={this.state.user.name}
-                    entries={this.state.user.entries}
-                  />
                   <ImageLinkForm
                     onInputChange={this.onInputChange}
                     onSubmit={this.onSubmit}
@@ -178,15 +181,100 @@ class App extends Component {
               </div>
             </div>
           </div>
-        ) : this.state.route === "signin" ? (
-          <Login loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
         ) : (
-          <Signup loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
-        )}
-
-        {/* {<Logo />
-        <ImageLinkForm />
-        <FaceRecognition />} */}
+          <div className="content">
+              <div className="content__left">
+                <div className="logo-top-wrapper">
+                  <Logo backgroundImage={LogoImage} margin='0'/>
+                  
+                </div>
+                
+                <div className="heading mth">
+                  Featured Experiences
+                </div>
+                <div className="features">
+                  <div className="feature__block">
+                    <div className="feature__icon">
+                      <svg
+                        className="f-icon-pointer"
+                        shapeRendering="geometricPrecision"
+                        style={{
+                          backgroundImage: `url(${IconAnalyze})`,
+                          backgroundRepeat: "no-repeat",
+                          backgroundPosition: "center"
+                        }}
+                      ></svg>
+                    </div>
+                    <div className="feature__heading">Live Analyzing</div>
+                    <div className="para feature__content">Analyze images based on already hosted image URL.</div>
+                  </div>
+                  <div className="feature__block">
+                  <div className="feature__icon">
+                      <svg
+                        className="f-icon-pointer"
+                        shapeRendering="geometricPrecision"
+                        style={{
+                          backgroundImage: `url(${IconPointer})`,
+                          backgroundRepeat: "no-repeat",
+                          backgroundPosition: "center"
+                        }}
+                      ></svg>
+                    </div>
+                    <div className="feature__heading">One-Click</div>
+                    <div className="para feature__content">Analyze images by just one mouse click or finger press.</div>
+                  </div>
+                  <div className="feature__block">
+                  <div className="feature__icon">
+                      <svg
+                        className="f-icon-pointer"
+                        shapeRendering="geometricPrecision"
+                        style={{
+                          backgroundImage: `url(${IconFacial})`,
+                          backgroundRepeat: "no-repeat",
+                          backgroundPosition: "center"
+                        }}
+                      ></svg>
+                    </div>
+                    <div className="feature__heading">Face Detection</div>
+                    <div className="para feature__content">Detect images to get faces in the image with a bounding box for each face.</div>
+                  </div>
+                  <div className="feature__block">
+                  <div className="feature__icon">
+                      <svg
+                        className="f-icon-pointer"
+                        shapeRendering="geometricPrecision"
+                        style={{
+                          backgroundImage: `url(${IconDemography})`,
+                          backgroundRepeat: "no-repeat",
+                          backgroundPosition: "center"
+                        }}
+                      ></svg>
+                    </div>
+                    <div className="feature__heading">Demographics</div>
+                    <div className="para feature__content">Analyze images to get prediction on age, gender, and appearance for each faces.</div>
+                  </div>
+                </div>
+                
+              </div>
+              <div className="content__right">
+                <div className="heading clr--white">
+                  Share your Experiences to the world
+                </div>
+                <div className="heading-break ">
+        
+                </div>
+                <div className="para clr--white mt-para">
+                Create a safer and more personalized planet through facial recognition technology
+                </div>
+                {
+                  this.state.route === "signin" ?
+                    <Login loadUser={this.loadUser} onRouteChange={this.onRouteChange} /> :
+                    <Signup loadUser={this.loadUser} onRouteChange={this.onRouteChange} /> 
+                }
+              </div>
+            </div>
+          )
+        }
       </div>
     );
   }

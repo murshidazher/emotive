@@ -44,9 +44,9 @@ class Signup extends React.Component {
 
   render() {
     return (
-      <div className="middle br2 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw5 center">
+      <div className="middle br2 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw5">
         <main className="pa4 black-80">
-          <div className="measure center">
+          <div className="measure">
             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
               <legend className="f4 fw6 ph0 mh0">Sign In</legend>
               <div className="mt3">
