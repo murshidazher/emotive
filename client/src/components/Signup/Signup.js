@@ -42,19 +42,23 @@ class Signup extends React.Component {
       });
   };
 
+
+  onSingIn = () => {
+    this.props.onRouteChange("signin");
+  }
+
   render() {
     return (
-      <div className="middle br2 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw5">
-        <main className="pa4 black-80">
-          <div className="measure">
+      <div className="w-100">
+        <main className="black-80">
+          <div className="measure clr--white">
             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
-              <legend className="f4 fw6 ph0 mh0">Sign In</legend>
-              <div className="mt3">
+              <div className="">
                 <label className="db fw6 lh-copy f6" htmlFor="name">
                   Name
                 </label>
                 <input
-                  className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                  className="pa2 input-reset ba bg-transparent b--white hover-white w-100"
                   type="text"
                   name="name"
                   id="name"
@@ -66,7 +70,7 @@ class Signup extends React.Component {
                   Email
                 </label>
                 <input
-                  className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                  className="pa2 input-reset ba bg-transparent b--white hover-white w-100"
                   type="email"
                   name="email-address"
                   id="email-address"
@@ -79,7 +83,7 @@ class Signup extends React.Component {
                 </label>
 
                 <input
-                  className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                  className="pa2 input-reset ba bg-transparent b--white hover-white w-100"
                   type="password"
                   name="password"
                   id="password"
@@ -95,6 +99,14 @@ class Signup extends React.Component {
               >
                 <span className="btn__content">Sign Up</span>
               </button>
+            </div>
+            <div className="ba dark-gray b--white  pa2 center lh-copy mt3">
+              <span
+                onClick={this.onSingIn}
+                className="f5 link white db"
+              >
+                Sign In
+              </span>
             </div>
           </div>
         </main>

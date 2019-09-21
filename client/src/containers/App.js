@@ -20,7 +20,7 @@ const initialState = {
   input: "",
   imageUrl: "",
   box: {},
-  route: "signin", // home
+  route: "home", // signin
   logged: "false",
   user: {
     id: "",
@@ -184,6 +184,11 @@ class App extends Component {
         ) : (
           <div className="content">
               <div className="content__left">
+              <video id="videobcg" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0">
+                  <source src="https://ak6.picdn.net/shutterstock/videos/1023857446/preview/stock-footage-montreal-canada-february-using-a-vintage-computer-from-the-late-s-early-s-to-work.mp4" type="video/mp4" />
+                  <source src="https://ak6.picdn.net/shutterstock/videos/1023857446/preview/stock-footage-montreal-canada-february-using-a-vintage-computer-from-the-late-s-early-s-to-work.webm" type="video/webm" />
+                        Sorry, your browser does not support HTML5 video.
+              </video>
                 <div className="logo-top-wrapper">
                   <Logo backgroundImage={LogoImage} margin='0'/>
                   

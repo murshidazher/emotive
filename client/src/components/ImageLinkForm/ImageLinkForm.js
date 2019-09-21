@@ -11,7 +11,7 @@ const ImageLinkForm = props => {
           onChange={props.onInputChange}
           placeholder="Paste image URL (ex: https://www.google.com/image.jpg)"
         />
-        <button type="button" className="btn" onClick={props.onSubmit}>
+        <button type="button" className="btn--classic b--no-left" onClick={props.onSubmit}>
           Detect
         </button>
       </div>

@@ -42,7 +42,7 @@ class Login extends React.Component {
       <div className="w-100">
         <main className="black-80">
           <div className="measure clr--white">
-            <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
+            <fieldset id="login" className="ba b--transparent ph0 mh0">
               <div className="">
                 <label className="db fw6 lh-copy f6" htmlFor="email-address">
                   Email
@@ -78,15 +78,6 @@ class Login extends React.Component {
                 <span className="btn__content">Sign in</span>
               </button>
             </div>
-            {/* <div className="mt3">
-              <button
-                type="submit"
-                className="btn"
-                onClick={() => onRouteChange("signup")}
-              >
-                <span className="btn__content">Sign up</span>
-              </button>
-            </div> */}
             <div className="ba dark-gray b--white  pa2 center lh-copy mt3">
               <span
                 onClick={() => onRouteChange("signup")}
