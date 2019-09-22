@@ -12,6 +12,7 @@ import IconAnalyze from "../img/icons/activity.svg";
 import IconPointer from "../img/icons/mouse-pointer.svg";
 import IconFacial from "../img/icons/aperture.svg";
 import IconDemography from "../img/icons/target.svg";
+import IconURL from "../img/icons/link.svg";
 
 import "./App.css";
 
@@ -27,7 +28,10 @@ const initialState = {
     name: "",
     email: "",
     entries: 0,
-    joined: ""
+    joined: "",
+    city: "Arkansas",
+    code: "+1",
+    phone: "853 243 764 02"
   }
 };
 
@@ -133,7 +137,10 @@ class App extends Component {
           <div>
             <Navigation onRouteChange={this.onRouteChange}
               name={this.state.user.name}
-              entries={this.state.user.entries}/>
+              entries={this.state.user.entries}
+              city={this.state.user.city}
+              code={this.state.user.code}
+              phone={this.state.user.phone}/>
             <div className="ml">
               <div className="wrapper">
                 <div className="sub__title">Active Search</div>
@@ -160,9 +167,21 @@ class App extends Component {
                   </div>
                   <div className="box__right blue-light">
                     <div className="box__content">
-                      <div className="face__wrapper--small">
-                        <div className="face--small"></div>
-                        <span className="image__name">Image Name</span>
+                    <div className="box__details">
+                        <div className="box__details__icon-wrapper">
+                          <svg
+                            className="f-icon f-icon-calendar"
+                            shapeRendering="geometricPrecision"
+                            style={{
+                              backgroundImage: `url(${IconURL})`,
+                              backgroundRepeat: "no-repeat",
+                              backgroundPosition: "center"
+                            }}
+                          ></svg>
+                        </div>
+                        <div className="box__details__content">
+                          <a href="#" className="box__details__content__link">lorem ipusm madrodm mmskmkid jtjem kmdmkjf ifkk</a>
+                        </div>
                       </div>
                     </div>
                   </div>

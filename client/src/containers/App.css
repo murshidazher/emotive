@@ -105,6 +105,7 @@
   position: relative;
   margin: 0 0;
   
+  
   /* text-align: center; */
 }
 
@@ -793,6 +794,21 @@ ul {
   margin-top: 100px;
 }
 
+.box__details__content__link {
+  text-decoration: none;
+  color: #FFF;
+  display: block;
+  width: 130px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.box__details__content__link:active,
+.box__details__content__link:focus {
+  color: #FFF;
+}
+
 
 @media screen and (min-width: 75em) {
 
@@ -833,3 +849,5 @@ ul {
  -ms-filter: blur(125px);
  filter: blur(125px);
 }
+
+

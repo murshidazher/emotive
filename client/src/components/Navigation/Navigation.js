@@ -103,7 +103,7 @@ class Navigation extends Component {
 
           <div className="user">
             <div className="user__name">{this.props.name}Isobelle Patterson</div>
-            <div className="user__location">Aurora</div>
+            <div className="user__location">{this.props.city}</div>
 
             <div className="user__phone">
               <div className="user__phone__icon">
@@ -118,7 +118,7 @@ class Navigation extends Component {
                 ></svg>
               </div>
 
-              <span className="user__phone__content">+1 877 714 68 05</span>
+              <span className="user__phone__content">{this.props.code} {this.props.phone}</span>
             </div>
           </div>
 

@@ -169,4 +169,5 @@
   color: black;
   font-weight: 300;
   font-size: .75em;
+  user-select: none;
 }
