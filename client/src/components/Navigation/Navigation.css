@@ -16,6 +16,7 @@
     top: 5px;
     width: 20px;
     height: 16px;
+    cursor: pointer;
 }
 
 .signout-btn {
@@ -26,6 +27,8 @@
     display: block;
     width: 20px;
     height: 16px;
+    cursor: pointer;
+    opacity: .45;
 }
 
 
@@ -288,7 +291,7 @@
         display: block;
         width: 20px;
         height: 16px;
-        opacity: .4;
+        opacity: .45;
     }
 
     .signout-wrapper {

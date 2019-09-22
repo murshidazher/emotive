@@ -32,6 +32,10 @@ class Navigation extends Component {
     return (d < 10) ? '0' + d.toString() : d.toString();
   }
 
+  onSignOut = event => {
+    this.props.onRouteChange('logout');
+  }
+
   render() {
     return (
       <div>
@@ -60,7 +64,7 @@ class Navigation extends Component {
           <div className="signout-wrapper">
             <svg
               className="signout-btn"
-              onClick={this.onMenuClick}
+              onClick={this.onSignOut}
               shapeRendering="geometricPrecision"
               style={{
                 backgroundImage: `url(${IconSignOut})`,
@@ -70,7 +74,6 @@ class Navigation extends Component {
             ></svg>
           </div>
         </div>
-        {/* <SideMenu onClick={props.onRouteChange} /> */}
 
         <div
           className={
