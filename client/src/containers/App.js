@@ -191,7 +191,7 @@ class App extends Component {
                           ></svg>
                         </div>
                         <div className="box__details__content">
-                          <a href={this.state.user.lastSearchUrl} target="_blank" className="box__details__content__link">{this.state.user.lastSearchUrl}</a>
+                          <a href={this.state.user.lastSearchUrl} target="_blank" rel="noopener noreferrer" className="box__details__content__link">{this.state.user.lastSearchUrl}</a>
                         </div>
                       </div>
                     </div>
