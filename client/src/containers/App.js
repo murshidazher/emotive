@@ -21,18 +21,20 @@ const initialState = {
   input: "",
   imageUrl: "",
   box: {},
-  route: "home", // signin
+  route: "signin", // signin
   logged: "false",
   user: {
     id: "",
     name: "",
     email: "",
     entries: 0,
-    joined: "",
     city: "Arkansas",
     code: "+1",
-    phone: "853 243 764 02"
-  }
+    phone: "853 243 764 02",
+    lastSearchUrl: "https://howfix.net/wp-content/uploads/2018/02/sIaRmaFSMfrw8QJIBAa8mA-article.png",
+    lastSearchDate: "MM.DD.YYYY — HH:MM",
+  },
+  
 };
 
 /**
@@ -52,24 +54,25 @@ class App extends Component {
   }
 
   onInputChange = event => {
-    this.setState({ input: event.target.value });
+    this.setState({ input: (event.target.value).trim() });
   };
 
   loadUser = data => {
-    this.setState({
-      user: {
+    this.setState(Object.assign(this.state.user,
+      {
         id: data.id,
         name: data.name,
         email: data.email,
         entries: data.entries,
-        joined: data.joined
-      }
-    });
+        lastSearchUrl: data.url,
+        lastSearchDate: data.date
+      }));
   };
 
   onSubmit = () => {
     this.setState({ imageUrl: this.state.input });
-    fetch("http://localhost:4000/imageurl", {
+
+    fetch("http://localhost:4001/imageurl", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -79,16 +82,23 @@ class App extends Component {
       .then(response => response.json())
       .then(response => {
         if (response) {
-          fetch("http://localhost:4000/image", {
+          fetch("http://localhost:4001/image", {
             method: "put",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-              id: this.state.user.id
+              id: this.state.user.id,
+              url: this.state.imageUrl
             })
           })
             .then(resp => resp.json())
-            .then(count => {
-              this.setState(Object.assign(this.state.user, { entries: count }));
+            .then( data => {
+              const { entries, url, now } = data;
+              this.setState(Object.assign(this.state.user,
+                {
+                  count: entries,
+                  lastSearchUrl: url,
+                  lastSearchDate: now
+                }));
             })
             .catch(console.log);
         }
@@ -160,7 +170,8 @@ class App extends Component {
                           ></svg>
                         </div>
                         <div className="box__details__content">
-                          26.4.2014 &mdash; 02:30 PM
+                          {this.state.user.lastSearchDate}
+                          {/* 26.4.2014 &mdash; 02:30 PM */}
                         </div>
                       </div>
                     </div>
@@ -180,7 +191,7 @@ class App extends Component {
                           ></svg>
                         </div>
                         <div className="box__details__content">
-                          <a href="#" className="box__details__content__link">lorem ipusm madrodm mmskmkid jtjem kmdmkjf ifkk</a>
+                          <a href={this.state.user.lastSearchUrl} className="box__details__content__link">{this.state.user.lastSearchUrl}</a>
                         </div>
                       </div>
                     </div>
@@ -203,7 +214,7 @@ class App extends Component {
         ) : (
           <div className="content">
               <div className="content__left">
-              <video id="videobcg" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0">
+              <video id="videobcg" preload="auto" autoPlay={true} loop="loop" muted="muted" volume="0">
                   <source src="https://ak6.picdn.net/shutterstock/videos/1023857446/preview/stock-footage-montreal-canada-february-using-a-vintage-computer-from-the-late-s-early-s-to-work.mp4" type="video/mp4" />
                   <source src="https://ak6.picdn.net/shutterstock/videos/1023857446/preview/stock-footage-montreal-canada-february-using-a-vintage-computer-from-the-late-s-early-s-to-work.webm" type="video/webm" />
                         Sorry, your browser does not support HTML5 video.

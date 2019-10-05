@@ -105,7 +105,7 @@ class Navigation extends Component {
           </div>
 
           <div className="user">
-            <div className="user__name">{this.props.name}Isobelle Patterson</div>
+            <div className="user__name">{this.props.name}</div>
             <div className="user__location">{this.props.city}</div>
 
             <div className="user__phone">
