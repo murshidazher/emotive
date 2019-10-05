@@ -2,7 +2,7 @@
   "name": "emotive",
   "version": "0.1.0",
   "private": true,
-  "description": "",
+  "description": "A face recognition app to detect faces and much more...",
   "main": "index.js",
   "workspaces": [
     "client",

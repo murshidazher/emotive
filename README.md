@@ -1,5 +1,7 @@
 Emotive [Create React App](https://github.com/facebook/create-react-app).
 
+A responsive web app intended to identify faces in a specified image and also predict their age, gender, expression and ethnicity.
+
 ## Available Scripts
 
 In the project directory, you can run:

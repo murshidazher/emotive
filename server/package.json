@@ -1,7 +1,7 @@
 {
   "name": "emotive-server",
   "version": "1.0.0",
-  "description": "",
+  "description": "The face recognition web app's back-end.",
   "main": "script.js",
   "scripts": {
     "start": "nodemon server.js",
