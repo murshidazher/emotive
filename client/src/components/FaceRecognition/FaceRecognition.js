@@ -18,7 +18,7 @@ class FaceRecognition extends Component {
   */
 
   render() {
-    const { imageUrl, boundingBox } = this.props;
+    const { imageUrl, boundingBoxes } = this.props;
 
     return (
       <div>
@@ -32,15 +32,19 @@ class FaceRecognition extends Component {
             heigh="auto"
           />
 
-          <div
-            className="bounding-box"
-            style={{
-              top: boundingBox.topRow,
-              right: boundingBox.rightCol,
-              left: boundingBox.leftCol,
-              bottom: boundingBox.bottomRow
-            }}
-          ></div>
+          {
+            boundingBoxes.map(box => {
+              return (<div key={box.rightCol} className="bounding-box"
+                        style={{
+                          top: box.topRow,
+                          right: box.rightCol,
+                          left: box.leftCol,
+                          bottom: box.bottomRow
+                }}></div>
+              )
+            })
+            
+          }
         </div>
       </div>
     );

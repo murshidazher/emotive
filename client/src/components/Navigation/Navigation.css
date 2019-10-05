@@ -69,6 +69,7 @@
     top: 0;
     right: 0;
     background-color: #FCFCFD;
+    overflow-y: scroll;
 }
 
 .side-options__details {

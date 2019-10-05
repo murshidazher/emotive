@@ -20,7 +20,7 @@ import "./App.css";
 const initialState = {
   input: "",
   imageUrl: "",
-  box: {},
+  boxes: [],
   route: "signin", // signin
   logged: "false",
   user: {
@@ -103,31 +103,33 @@ class App extends Component {
             .catch(console.log);
         }
 
-        this.displayBoundingBox(this.calcFace(response));
+        this.displayBoundingBoxes(this.calcFaces(response));
       })
       .catch(err => console.log(err));
   };
 
-  calcFace = data => {
-    const face = data.outputs[0].data.regions[0].region_info.bounding_box;
-    const img = document.getElementById("inputImg");
-    const width = Number(img.width);
-    const height = Number(img.height);
+  calcFaces = data => {
+    return data.outputs[0].data.regions.map(clarifi => {
+      const face = clarifi.region_info.bounding_box;
+      const img = document.getElementById("inputImg");
+      const width = Number(img.width);
+      const height = Number(img.height);
 
-    // rightCol: ((face.left_col * width) - (face.right_col * width)),
-    // bottomRow: ((face.top_row * height) - (face.bottom_row * height)),
+      // rightCol: ((face.left_col * width) - (face.right_col * width)),
+      // bottomRow: ((face.top_row * height) - (face.bottom_row * height)),
 
-    return {
-      leftCol: face.left_col * width,
-      topRow: face.top_row * height,
-      rightCol: width - face.right_col * width,
-      bottomRow: height - face.bottom_row * height
-    };
+      return {
+        leftCol: face.left_col * width,
+        topRow: face.top_row * height,
+        rightCol: width - face.right_col * width,
+        bottomRow: height - face.bottom_row * height
+      };
+    });
+    
   };
 
-  displayBoundingBox = box => {
-    console.log(box);
-    this.setState({ box: box });
+  displayBoundingBoxes = boxes => {
+    this.setState({ boxes: boxes });
   };
 
   onRouteChange = route => {
@@ -205,7 +207,7 @@ class App extends Component {
                   />
                   <FaceRecognition
                     imageUrl={this.state.imageUrl}
-                    boundingBox={this.state.box}
+                    boundingBoxes={this.state.boxes}
                   />
                 </div>
               </div>
