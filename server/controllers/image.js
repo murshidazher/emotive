@@ -19,11 +19,12 @@ const handleApiCall = (req, res) => {
 
 const handleImage = (db) => (req, res) => {
 
-    const { id, url, userDate } = req.body;
+    const { id, url } = req.body;
 
-    let now = userDate;
-    now = date.format(now, 'MM.DD.YYYY — HH:mm A');
-        
+    let now = new Date();
+    
+    now = date.format(now, 'MM.DD.YYYY — HH:mm A', true);
+    console.log('saadadasd ----------- ' + now)  
 
     db('shistory')
         .where('fid', '=', id)

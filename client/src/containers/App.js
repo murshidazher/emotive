@@ -87,8 +87,7 @@ class App extends Component {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               id: this.state.user.id,
-              url: this.state.imageUrl,
-              userDate: new Date()
+              url: this.state.imageUrl
             })
           })
             .then(resp => resp.json())
