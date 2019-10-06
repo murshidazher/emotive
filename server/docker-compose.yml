@@ -9,7 +9,7 @@ services:
     working_dir: /usr/src/emotive-server
     environment:
       POSTGRES_URI: postgres://murshid:password@postgres:5432/emotive-db-docker
-    links:
+    depends_on:
       - postgres
     ports: 
       - "8080:8080"
