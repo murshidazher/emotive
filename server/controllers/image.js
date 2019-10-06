@@ -24,7 +24,6 @@ const handleImage = (db) => (req, res) => {
     let now = new Date();
     
     now = date.format(now, 'MM.DD.YYYY — HH:mm A', true);
-    console.log('saadadasd ----------- ' + now)  
 
     db('shistory')
         .where('fid', '=', id)
