@@ -9,7 +9,7 @@ const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
-const PORT = process.env.PORT || 4001;
+const PORT = process.env.PORT || 8080;
 
 
 const db = knex({
