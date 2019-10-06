@@ -4,6 +4,8 @@ const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
 const knex = require('knex');
 
+const morgan = require('morgan');
+
 const register = require('./controllers/register');
 const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
@@ -14,17 +16,14 @@ const PORT = process.env.PORT || 8080;
 
 const db = knex({
   client: 'pg',
-  connection: {
-    host : '127.0.0.1',
-    user : 'murshid',
-    password : '',
-    database : 'emotive'
-  }
+  connection: process.env.POSTGRES_URI
 });
 
 const app = express();
 
 app.use(bodyParser.json());
+
+app.use(morgan('short'));
 app.use(cors());
 
 app.get('/', (req, res) => {

@@ -1,6 +1,6 @@
 FROM node:10.16
 
-WORKDIR /usr/src/emotive-client 
+WORKDIR /usr/src/emotive-server 
 
 COPY ./ ./ 
 
