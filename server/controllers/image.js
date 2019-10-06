@@ -19,9 +19,9 @@ const handleApiCall = (req, res) => {
 
 const handleImage = (db) => (req, res) => {
 
-    const { id, url } = req.body;
+    const { id, url, userDate } = req.body;
 
-    let now = new Date();
+    let now = userDate;
     now = date.format(now, 'MM.DD.YYYY — HH:mm A');
         
 
