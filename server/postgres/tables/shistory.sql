@@ -1,0 +1,10 @@
+BEGIN TRANSACTION;
+
+CREATE TABLE shistory
+(
+    FID serial NOT NULL REFERENCES users(ID),
+    url text NOT NULL,
+    DATE VARCHAR(100) NOT NULL
+);
+
+COMMIT;
