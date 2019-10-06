@@ -31,6 +31,8 @@ app.get('/', (req, res) => {
     res.send('Server is running..');
 })
 
+app.get('/', (res, req) => { res.send("Server is working...") })
+
 app.post('/signin', signin.handleSignin(db, bcrypt))
 
 app.post('/register', register.handleRegister(db, bcrypt))
