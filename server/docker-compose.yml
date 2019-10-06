@@ -1,28 +1,28 @@
 version: '3.6'
 
 services:
-	# Backend API
-	emotive-server:
-		container_name: server
-		build: ./
-		command: npm start
-		working_dir: /usr/src/emotive-server
-		environment:
-			POSTGRES_URI:  postgres://admin:password@postgres:5432/emotive-db-docker
-		links:
-			- postgres
-		ports: 
-			- "3000:3000"
-		volumes:
-			- ./:/usr/src/emotive-server
+  # Backend API
+  emotive-server:
+    container_name: backend-server
+    build: ./
+    command: npm start
+    working_dir: /usr/src/emotive-server
+    environment:
+      POSTGRES_URI: postgres://murshid:password@postgres:5432/emotive-db-docker
+    links:
+      - postgres
+    ports: 
+      - "8080:8080"
+    volumes:
+      - ./:/usr/src/emotive-server
 
-		# postgres
-		postgres:
-			environment:
-				POSTGRES_USER: admin
-				POSTGRES_PASSWORD: password
-				POSTGRES_DB: emotive-db-docker
-				POSTGRES_HOST: postgres
-			build: ./postgres
-			ports:
-				- "5432:5432"
+  # postgres
+  postgres:
+    environment:
+      POSTGRES_USER: murshid
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: emotive-db-docker
+      POSTGRES_HOST: postgres
+    build: ./postgres
+    ports:
+      - "5432:5432"

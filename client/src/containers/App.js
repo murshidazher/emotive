@@ -95,7 +95,7 @@ class App extends Component {
               const { entries, url, now } = data;
               this.setState(Object.assign(this.state.user,
                 {
-                  count: entries,
+                  entries: entries,
                   lastSearchUrl: url,
                   lastSearchDate: now
                 }));
