@@ -1,12 +1,16 @@
 import React, { Component } from "react";
+
 import Navigation from "../components/Navigation/Navigation";
 import FaceRecognition from "../components/FaceRecognition/FaceRecognition";
 import ImageLinkForm from "../components/ImageLinkForm/ImageLinkForm";
 import Login from "../components/Login/Login";
 import Signup from "../components/Signup/Signup";
 import Logo from "../components/Logo/Logo";
-import LogoImage from "../img/logo_main.svg";
+import Modal from "../components/Modal/Modal";
+import Profile from "../components/Profile/Profile";
 
+
+import LogoImage from "../img/logo_main.svg";
 import IconCalendar from "../img/icons/calendar.svg";
 import IconAnalyze from "../img/icons/activity.svg";
 import IconPointer from "../img/icons/mouse-pointer.svg";
@@ -21,8 +25,9 @@ const initialState = {
   input: "",
   imageUrl: "",
   boxes: [],
-  route: "signin", // signin
-  logged: "false",
+  route: "home", // signin
+  logged: true,
+  profileOpen: false,
   user: {
     id: "",
     name: "",
@@ -142,9 +147,21 @@ class App extends Component {
     this.setState({ route: route });
   };
 
+  toggleModal = () => {
+    this.setState(prevState => ({
+      ...prevState,
+      profileOpen: !prevState.profileOpen
+    }))
+  }
+
   render() {
     return (
       <div className="App">
+        { this.state.profileOpen &&
+          <Modal>
+            <Profile isOpen={this.state.profileOpen} toggleModal={this.toggleModal} />
+          </Modal>
+        }
         {this.state.route === "home" ? (
           <div>
             <Navigation onRouteChange={this.onRouteChange}
