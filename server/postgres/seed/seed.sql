@@ -1,13 +1,15 @@
 BEGIN TRANSACTION;
 
 INSERT INTO users
-    (name, email, entries, joined)
+    (name, email, entries, joined, phone, city)
 VALUES
     (
         'Isobelle Patterson',
         'belle@gmail.com',
         '0',
-        '2019-10-05 08:53:16.687'
+        '2019-10-05 08:53:16.687',
+        '853 243 764 02',
+        'Arkansas'
 );
 
 INSERT INTO login

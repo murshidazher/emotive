@@ -38,6 +38,8 @@ app.post('/register', register.handleRegister(db, bcrypt))
 
 app.get('/profile/:id', profile.handleProfileGet(db))
 
+app.post('/profile/:id', profile.handleProfileUpdate(db))
+
 app.put('/image', image.handleImage(db))
 
 app.post('/imageurl', (req, res) => {image.handleApiCall(req, res)})

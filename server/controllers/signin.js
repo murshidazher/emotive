@@ -25,6 +25,9 @@ const handleSignin = (db, bcrypt) => (req, res) => {
                                     entries: user[0].entries,
                                     id: user[0].id,
                                     name: user[0].name,
+                                    joined: user[0].joined,
+                                    phone: user[0].phone,
+                                    city: user[0].city,
                                     url: data[0].url,
                                     date: data[0].date
                                 })
@@ -35,6 +38,9 @@ const handleSignin = (db, bcrypt) => (req, res) => {
                                     entries: user[0].entries,
                                     id: user[0].id,
                                     name: user[0].name,
+                                    joined: user[0].joined,
+                                    phone: user[0].phone,
+                                    city: user[0].city,
                                     url: 'https://howfix.net/wp-content/uploads/2018/02/sIaRmaFSMfrw8QJIBAa8mA-article.png',
                                     date: 'MM.DD.YYYY — HH:MM'
                                 })

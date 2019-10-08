@@ -19,7 +19,7 @@ class Navigation extends Component {
    * @route - keeps track of our current position in page transition
    */
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       menu: false
     };

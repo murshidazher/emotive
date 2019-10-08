@@ -25,7 +25,7 @@ const initialState = {
   input: "",
   imageUrl: "",
   boxes: [],
-  route: "home", // signin
+  route: "signin", // signin
   logged: true,
   profileOpen: false,
   user: {
@@ -33,11 +33,12 @@ const initialState = {
     name: "",
     email: "",
     entries: 0,
-    city: "Arkansas",
+    city: "",
+    joined: "MM/DD/YYYY",
     code: "+1",
-    phone: "853 243 764 02",
-    lastSearchUrl: "https://howfix.net/wp-content/uploads/2018/02/sIaRmaFSMfrw8QJIBAa8mA-article.png",
-    lastSearchDate: "MM.DD.YYYY — HH:MM",
+    phone: "",
+    url: "https://howfix.net/wp-content/uploads/2018/02/sIaRmaFSMfrw8QJIBAa8mA-article.png",
+    date: "MM.DD.YYYY — HH:MM",
   },
   
 };
@@ -63,14 +64,18 @@ class App extends Component {
   };
 
   loadUser = data => {
+    console.log(data);
     this.setState(Object.assign(this.state.user,
       {
         id: data.id,
         name: data.name,
         email: data.email,
         entries: data.entries,
-        lastSearchUrl: data.url,
-        lastSearchDate: data.date
+        joined: data.joined,
+        city: data.city,
+        phone: data.phone,
+        url: data.url,
+        date: data.date
       }));
   };
 
@@ -101,8 +106,8 @@ class App extends Component {
               this.setState(Object.assign(this.state.user,
                 {
                   entries: entries,
-                  lastSearchUrl: url,
-                  lastSearchDate: now
+                  url: url,
+                  date: now
                 }));
             })
             .catch(console.log);
@@ -139,7 +144,7 @@ class App extends Component {
 
   onRouteChange = route => {
     if (route === "logout") {
-      this.setState(initialState);
+      this.setState(...initialState);
     } else if (route === "home") {
       this.setState({ logged: true });
     }
@@ -159,7 +164,7 @@ class App extends Component {
       <div className="App">
         { this.state.profileOpen &&
           <Modal>
-            <Profile isOpen={this.state.profileOpen} toggleModal={this.toggleModal} />
+            <Profile isOpen={this.state.profileOpen} toggleModal={this.toggleModal} user={this.state.user} loadUser={this.loadUser} />
           </Modal>
         }
         {this.state.route === "home" ? (
@@ -190,7 +195,7 @@ class App extends Component {
                           ></svg>
                         </div>
                         <div className="box__details__content">
-                          {this.state.user.lastSearchDate}
+                          {this.state.user.date}
                           {/* 26.4.2014 &mdash; 02:30 PM */}
                         </div>
                       </div>
@@ -211,7 +216,7 @@ class App extends Component {
                           ></svg>
                         </div>
                         <div className="box__details__content">
-                          <a href={this.state.user.lastSearchUrl} target="_blank" rel="noopener noreferrer" className="box__details__content__link">{this.state.user.lastSearchUrl}</a>
+                          <a href={this.state.user.url} target="_blank" rel="noopener noreferrer" className="box__details__content__link">{this.state.user.url}</a>
                         </div>
                       </div>
                     </div>
