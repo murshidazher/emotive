@@ -6,6 +6,7 @@ import IconMenu from "../../img/icons/menu.svg";
 import IconSignOut from "../../img/icons/logout.svg";
 import IconCount from "../../img/icons/codesandbox.svg";
 import IconPhone from "../../img/icons/phone.svg";
+import IconSettings from "../../img/icons/settings.svg";
 
 import Tree from "../Tree/Tree";
 import Branch from "../Tree/Branch";
@@ -102,6 +103,18 @@ class Navigation extends Component {
 
           <div className="face__wrapper">
             <div className="face"></div>
+            <div alt="profile setting" className="profile-setting__icon">
+                <svg
+                  className="f-icon f-icon-settings"
+                  shapeRendering="geometricPrecision"
+                  onClick={this.props.modalToggle}
+                  style={{
+                    backgroundImage: `url(${IconSettings})`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "center"
+                  }}
+                ></svg>
+              </div>
           </div>
 
           <div className="user">

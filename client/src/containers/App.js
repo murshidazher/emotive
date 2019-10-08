@@ -165,6 +165,7 @@ class App extends Component {
         {this.state.route === "home" ? (
           <div>
             <Navigation onRouteChange={this.onRouteChange}
+              modalToggle={this.toggleModal}
               name={this.state.user.name}
               entries={this.state.user.entries}
               city={this.state.user.city}
