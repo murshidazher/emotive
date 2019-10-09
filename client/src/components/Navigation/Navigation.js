@@ -34,7 +34,21 @@ class Navigation extends Component {
   }
 
   onSignOut = event => {
-    this.props.onRouteChange('logout');
+    fetch("http://localhost:8080/signout", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": 'Bearer ' + window.sessionStorage.getItem('token')
+      }
+    })
+      .then(resp => resp.json())
+      .then(data => {
+        if (data && data.logout === 'true') {
+          // delete the session storage
+          window.sessionStorage.removeItem('token');
+          this.props.onRouteChange('logout');
+        }
+      });
   }
 
   render() {

@@ -10,6 +10,7 @@ const morgan = require('morgan');
 
 const register = require('./controllers/register');
 const signin = require('./controllers/signin');
+const signout = require('./controllers/signout');
 const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
@@ -42,6 +43,8 @@ app.get('/', (req, res) => {
 app.get('/', (res, req) => { res.send("Server is working...") })
 
 app.post('/signin', signin.handleSigninAuthentication(db, bcrypt, redisClient, jwt))
+
+app.post('/signout', auth.requireAuth(redisClient), signout.handleSignOut(redisClient))
 
 app.post('/register', register.handleRegisterAuthentication(db, bcrypt, redisClient, jwt))
 

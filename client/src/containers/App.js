@@ -26,7 +26,7 @@ const initialState = {
   imageUrl: "",
   boxes: [],
   route: "signin", // signin
-  logged: true,
+  logged: false,
   profileOpen: false,
   user: {
     id: "",
@@ -98,7 +98,7 @@ class App extends Component {
   };
 
   loadUser = data => {
-    this.setState(Object.assign(this.state.user,
+    this.setState({ logged: true }, Object.assign(this.state.user,
       {
         id: data.id,
         name: data.name,
@@ -187,7 +187,7 @@ class App extends Component {
 
   onRouteChange = route => {
     if (route === "logout") {
-      this.setState(...initialState);
+      this.setState(initialState);
     } else if (route === "home") {
       this.setState({ logged: true });
     }
