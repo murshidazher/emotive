@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
 const knex = require('knex');
+const jwt = require('jsonwebtoken');
 const redis = require('redis');
 
 const morgan = require('morgan');
@@ -40,9 +41,9 @@ app.get('/', (req, res) => {
 
 app.get('/', (res, req) => { res.send("Server is working...") })
 
-app.post('/signin', signin.handleSigninAuthentication(db, bcrypt, redisClient))
+app.post('/signin', signin.handleSigninAuthentication(db, bcrypt, redisClient, jwt))
 
-app.post('/register', register.handleRegister(db, bcrypt))
+app.post('/register', register.handleRegisterAuthentication(db, bcrypt, redisClient, jwt))
 
 app.get('/profile/:id', auth.requireAuth(redisClient), profile.handleProfileGet(db))
 

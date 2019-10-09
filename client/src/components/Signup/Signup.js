@@ -23,6 +23,10 @@ class Signup extends React.Component {
     this.setState({ password: event.target.value });
   };
 
+  saveAuthTokenInSession = (token) => {
+    window.sessionStorage.setItem('token', token);
+  }
+
   onSubmitSignup = () => {
     fetch("http://localhost:8080/register", {
       method: "post",
@@ -34,10 +38,25 @@ class Signup extends React.Component {
       })
     })
       .then(resp => resp.json())
-      .then(user => {
-        if (user.id) {
-          this.props.loadUser(user);
-          this.props.onRouteChange("home");
+      .then(data => {
+        console.log(data);
+        if (data.userId && data.success === 'true') {
+          this.saveAuthTokenInSession(data.token)
+
+          fetch(`http://localhost:8080/profile/${data.userId}`, {
+            method: "get",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": 'Bearer ' + data.token
+            }
+          })
+            .then(resp => resp.json())
+            .then(user => { 
+              if (user && user.email) {
+                this.props.loadUser(user);
+                this.props.onRouteChange("home");
+              }
+          })
         }
       });
   };
