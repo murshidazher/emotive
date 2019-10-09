@@ -1,12 +1,16 @@
-const handleSignin = (db, bcrypt) => (req, res) => {
+const jwt = require('jsonwebtoken');
+
+const handleSignin = (db, bcrypt, req, res) => {
 
     const { email, password } = req.body;
 
+    console.log('aaaaaassadadsadasd');
+
     if ( !email || !password ) {
-        return res.status(400).json('incorrect form submission');
+        return Promise.reject('incorrect form submission');
     }
 
-    db.select('email', 'hash').from('login')
+    return db.select('email', 'hash').from('login')
     .where('email', '=', email)
         .then(data => {
             const isValid = bcrypt.compareSync(password, data[0].hash);
@@ -16,11 +20,11 @@ const handleSignin = (db, bcrypt) => (req, res) => {
                 .where('email', '=', email)
                 .then(user => {
             
-                    db('shistory')
+                    return db('shistory')
                         .where('fid', '=', user[0].id)
                         .then(data => {
                             if (data[0] !== undefined) {
-                                res.status(200).json({
+                                return ({
                                     email: user[0].email,
                                     entries: user[0].entries,
                                     id: user[0].id,
@@ -33,7 +37,7 @@ const handleSignin = (db, bcrypt) => (req, res) => {
                                 })
                             }
                             else { 
-                                res.status(200).json({
+                                return ({
                                     email: user[0].email,
                                     entries: user[0].entries,
                                     id: user[0].id,
@@ -49,16 +53,46 @@ const handleSignin = (db, bcrypt) => (req, res) => {
 
 
                 })
-                .catch(err => res.status(400).json('error logging in'));
+                .catch(err => Promise.reject('error logging in'));
             } else {
-                res.status(400).json('wrong credentials')
+                Promise.reject('wrong credentials')
             }
-
-            
         })
-        .catch(err => res.status(400).json('wrong credentials'))    
+        .catch(err => Promise.reject('wrong credentials'))    
+}
+
+const getAuthTokenId = () => {
+    console.log('auth ok');
+}
+
+const signToken = (email) => {
+    const jwtPayload = { email };
+    return jwt.sign(jwtPayload, 'JWT_SECRET', {expiresIn: '2 days'});
+}
+
+const createSessions = (user) => {
+    
+    // JWT token
+    const { id, email } = user;
+    const token = signToken(email);
+    return { success: true, userId: id, token: token }
+}
+
+const handleSigninAuthentication = (db, bcrypt) => (req, res) => {
+    const { authorization } = req.headers;
+
+    
+
+    return authorization ?
+        getAuthTokenId() :
+        handleSignin(db, bcrypt, req, res)
+            .then(data => {
+                return data.id && data.email ? createSessions(data): Promise.reject(data)
+            })
+            .then(session => res.json(session))
+            .catch(err => {res.status(400).json(err)})
 }
 
 module.exports = {
-    handleSignin
+    handleSigninAuthentication
 }
