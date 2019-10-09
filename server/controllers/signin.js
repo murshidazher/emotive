@@ -1,10 +1,12 @@
 const jwt = require('jsonwebtoken');
+const redis = require('redis');
+
+// setup redis
+let redisClient = redis.createClient(process.env.REDIS_URI);
 
 const handleSignin = (db, bcrypt, req, res) => {
 
     const { email, password } = req.body;
-
-    console.log('aaaaaassadadsadasd');
 
     if ( !email || !password ) {
         return Promise.reject('incorrect form submission');
@@ -19,39 +21,10 @@ const handleSignin = (db, bcrypt, req, res) => {
                 return db.select('*').from('users')
                 .where('email', '=', email)
                 .then(user => {
-            
-                    return db('shistory')
-                        .where('fid', '=', user[0].id)
-                        .then(data => {
-                            if (data[0] !== undefined) {
-                                return ({
-                                    email: user[0].email,
-                                    entries: user[0].entries,
-                                    id: user[0].id,
-                                    name: user[0].name,
-                                    joined: user[0].joined,
-                                    phone: user[0].phone,
-                                    city: user[0].city,
-                                    url: data[0].url,
-                                    date: data[0].date
-                                })
-                            }
-                            else { 
-                                return ({
-                                    email: user[0].email,
-                                    entries: user[0].entries,
-                                    id: user[0].id,
-                                    name: user[0].name,
-                                    joined: user[0].joined,
-                                    phone: user[0].phone,
-                                    city: user[0].city,
-                                    url: 'https://howfix.net/wp-content/uploads/2018/02/sIaRmaFSMfrw8QJIBAa8mA-article.png',
-                                    date: 'MM.DD.YYYY — HH:MM'
-                                })
-                            }
-                        })
-
-
+                    return ({
+                        email: user[0].email,
+                        id: user[0].id,
+                    })
                 })
                 .catch(err => Promise.reject('error logging in'));
             } else {
@@ -61,8 +34,19 @@ const handleSignin = (db, bcrypt, req, res) => {
         .catch(err => Promise.reject('wrong credentials'))    
 }
 
-const getAuthTokenId = () => {
-    console.log('auth ok');
+const getAuthTokenId = (req, res) => {
+    let { authorization } = req.headers;
+
+    if (authorization.startsWith('Bearer ')) {
+        authorization = authorization.slice(7, authorization.length);
+    }
+
+    return redisClient.get(authorization, (err, reply) => {
+        if (err || !reply) {
+            return res.status(400).json('Unauthorized');
+        }
+        return res.json({id: reply});
+    })
 }
 
 const signToken = (email) => {
@@ -70,27 +54,35 @@ const signToken = (email) => {
     return jwt.sign(jwtPayload, 'JWT_SECRET', {expiresIn: '2 days'});
 }
 
+const setToken = (token, id) => {
+    return Promise.resolve(redisClient.set(token, id))
+}
+
 const createSessions = (user) => {
     
     // JWT token
     const { id, email } = user;
     const token = signToken(email);
-    return { success: true, userId: id, token: token }
+    return setToken(token, id)
+        .then(() => ({
+            success: 'true',
+            userId: id,
+            token: token
+        }))
+        .catch(console.log)
 }
 
 const handleSigninAuthentication = (db, bcrypt) => (req, res) => {
     const { authorization } = req.headers;
 
-    
-
     return authorization ?
-        getAuthTokenId() :
+        getAuthTokenId(req, res) :
         handleSignin(db, bcrypt, req, res)
             .then(data => {
                 return data.id && data.email ? createSessions(data): Promise.reject(data)
             })
-            .then(session => res.json(session))
-            .catch(err => {res.status(400).json(err)})
+            .then(session => res.status(200).json(session))
+            .catch(err => res.status(400).json(err))
 }
 
 module.exports = {

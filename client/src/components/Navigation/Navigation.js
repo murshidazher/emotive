@@ -30,7 +30,7 @@ class Navigation extends Component {
   };
 
   formatDigit = (d) => {
-    return (d < 10) ? '0' + d.toString() : d.toString();
+    return (d < 10) ? '0' + d : d;
   }
 
   onSignOut = event => {

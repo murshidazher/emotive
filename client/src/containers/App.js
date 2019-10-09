@@ -59,12 +59,45 @@ class App extends Component {
     this.state = initialState;
   }
 
+  componentDidMount() {
+    const token = window.sessionStorage.getItem('token');
+
+    if (token) {
+      fetch('http://localhost:8080/signin', {
+        method: "post",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "Authorization": 'Bearer ' + token
+        }
+      })
+        .then(resp => resp.json())
+        .then(data => {
+          if (data && data.id) {
+            fetch(`http://localhost:8080/profile/${data.id}`, {
+              method: "get",
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization": 'Bearer ' + token
+              }
+            })
+              .then(resp => resp.json())
+              .then(user => { 
+                if (user && user.email) {
+                  this.loadUser(user);
+                  this.onRouteChange('home');
+                }
+              })
+          }
+        })
+        .catch(console.log);
+    }
+  }
+
   onInputChange = event => {
     this.setState({ input: (event.target.value).trim() });
   };
 
   loadUser = data => {
-    console.log(data);
     this.setState(Object.assign(this.state.user,
       {
         id: data.id,
@@ -236,7 +269,7 @@ class App extends Component {
               </div>
             </div>
           </div>
-        ) : (
+        ) : !(window.sessionStorage.getItem('token')) && (
           <div className="content">
               <div className="content__left">
               <video id="videobcg" preload="auto" autoPlay={true} loop="loop" muted="muted" volume="0">
@@ -326,10 +359,10 @@ class App extends Component {
                 <div className="para clr--white mt-para">
                 Create a safer and more personalized planet through facial recognition technology
                 </div>
-                {
+                {  
                   this.state.route === "signin" ?
                     <Login loadUser={this.loadUser} onRouteChange={this.onRouteChange} /> :
-                    <Signup loadUser={this.loadUser} onRouteChange={this.onRouteChange} /> 
+                      <Signup loadUser={this.loadUser} onRouteChange={this.onRouteChange} /> 
                 }
               </div>
             </div>
