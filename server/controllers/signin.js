@@ -1,8 +1,4 @@
 const jwt = require('jsonwebtoken');
-const redis = require('redis');
-
-// setup redis
-let redisClient = redis.createClient(process.env.REDIS_URI);
 
 const handleSignin = (db, bcrypt, req, res) => {
 
@@ -34,7 +30,7 @@ const handleSignin = (db, bcrypt, req, res) => {
         .catch(err => Promise.reject('wrong credentials'))    
 }
 
-const getAuthTokenId = (req, res) => {
+const getAuthTokenId = (req, res, redisClient) => {
     let { authorization } = req.headers;
 
     if (authorization.startsWith('Bearer ')) {
@@ -54,16 +50,16 @@ const signToken = (email) => {
     return jwt.sign(jwtPayload, 'JWT_SECRET', {expiresIn: '2 days'});
 }
 
-const setToken = (token, id) => {
+const setToken = (token, id, redisClient) => {
     return Promise.resolve(redisClient.set(token, id))
 }
 
-const createSessions = (user) => {
+const createSessions = (user, redisClient) => {
     
     // JWT token
     const { id, email } = user;
     const token = signToken(email);
-    return setToken(token, id)
+    return setToken(token, id, redisClient)
         .then(() => ({
             success: 'true',
             userId: id,
@@ -72,14 +68,14 @@ const createSessions = (user) => {
         .catch(console.log)
 }
 
-const handleSigninAuthentication = (db, bcrypt) => (req, res) => {
+const handleSigninAuthentication = (db, bcrypt, redisClient) => (req, res) => {
     const { authorization } = req.headers;
 
     return authorization ?
-        getAuthTokenId(req, res) :
+        getAuthTokenId(req, res, redisClient) :
         handleSignin(db, bcrypt, req, res)
             .then(data => {
-                return data.id && data.email ? createSessions(data): Promise.reject(data)
+                return data.id && data.email ? createSessions(data, redisClient): Promise.reject(data)
             })
             .then(session => res.status(200).json(session))
             .catch(err => res.status(400).json(err))
