@@ -47,20 +47,14 @@ const handleProfileUpdate = (db) => (req, res) => {
     const { id } = req.params;
     const { name, phone, city } = req.body.formInput;
 
-    console.log('reqqq   -> ' + req.body.formInput);
-    console.log("\"" + name + "\"" + phone + "\"" + city + "\"");
 
     const obj = {}
-
 
 
     if (name !== undefined && name !== null && name !== '') obj.name = name;
     if (phone !== undefined && phone !== null && phone !== '') obj.phone = phone;
     if (city !== undefined && city !== null && city !== '') obj.city = city;
 
-    
-    if (city !== undefined && city !== null && city !== '')
-        console.log('hehhehhehhee   inside city  ' + city)
 
     db('users')
         .where({ id })

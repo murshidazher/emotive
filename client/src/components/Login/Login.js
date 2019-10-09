@@ -39,7 +39,8 @@ class Login extends React.Component {
           fetch(`http://localhost:8080/profile/${data.userId}`, {
             method: "get",
             headers: {
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
+              "Authorization": 'Bearer ' + data.token
             }
           })
             .then(resp => resp.json())

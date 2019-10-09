@@ -12,6 +12,8 @@ const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
+const auth = require('./middleware/authorization');
+
 const PORT = process.env.PORT || 8080;
 
 
@@ -42,13 +44,13 @@ app.post('/signin', signin.handleSigninAuthentication(db, bcrypt, redisClient))
 
 app.post('/register', register.handleRegister(db, bcrypt))
 
-app.get('/profile/:id', profile.handleProfileGet(db))
+app.get('/profile/:id', auth.requireAuth(redisClient), profile.handleProfileGet(db))
 
-app.post('/profile/:id', profile.handleProfileUpdate(db))
+app.post('/profile/:id', auth.requireAuth(redisClient), profile.handleProfileUpdate(db))
 
-app.put('/image', image.handleImage(db))
+app.put('/image', auth.requireAuth(redisClient), image.handleImage(db))
 
-app.post('/imageurl', (req, res) => {image.handleApiCall(req, res)})
+app.post('/imageurl', auth.requireAuth(redisClient), (req, res) => {image.handleApiCall(req, res)})
 
 
 app.listen(PORT, () => {

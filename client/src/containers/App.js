@@ -117,7 +117,10 @@ class App extends Component {
 
     fetch("http://localhost:8080/imageurl", {
       method: "post",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": 'Bearer ' + window.sessionStorage.getItem('token')
+      },
       body: JSON.stringify({
         input: this.state.input
       })
@@ -127,7 +130,10 @@ class App extends Component {
         if (response) {
           fetch("http://localhost:8080/image", {
             method: "put",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": 'Bearer ' + window.sessionStorage.getItem('token')
+            },
             body: JSON.stringify({
               id: this.state.user.id,
               url: this.state.imageUrl
@@ -152,27 +158,31 @@ class App extends Component {
   };
 
   calcFaces = data => {
-    return data.outputs[0].data.regions.map(clarifi => {
-      const face = clarifi.region_info.bounding_box;
-      const img = document.getElementById("inputImg");
-      const width = Number(img.width);
-      const height = Number(img.height);
-
-      // rightCol: ((face.left_col * width) - (face.right_col * width)),
-      // bottomRow: ((face.top_row * height) - (face.bottom_row * height)),
-
-      return {
-        leftCol: face.left_col * width,
-        topRow: face.top_row * height,
-        rightCol: width - face.right_col * width,
-        bottomRow: height - face.bottom_row * height
-      };
-    });
+    if (data && data.outputs) {
+      return data.outputs[0].data.regions.map(clarifi => {
+        const face = clarifi.region_info.bounding_box;
+        const img = document.getElementById("inputImg");
+        const width = Number(img.width);
+        const height = Number(img.height);
+  
+        // rightCol: ((face.left_col * width) - (face.right_col * width)),
+        // bottomRow: ((face.top_row * height) - (face.bottom_row * height)),
+  
+        return {
+          leftCol: face.left_col * width,
+          topRow: face.top_row * height,
+          rightCol: width - face.right_col * width,
+          bottomRow: height - face.bottom_row * height
+        };
+      });
+    }
     
+    return;
   };
 
   displayBoundingBoxes = boxes => {
-    this.setState({ boxes: boxes });
+    if (boxes)
+      this.setState({ boxes: boxes });
   };
 
   onRouteChange = route => {
