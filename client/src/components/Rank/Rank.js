@@ -30,7 +30,7 @@ class Rank extends React.Component {
   render() {
     return (
       <div className="rank__badge">
-        <div>{`Rank Badge: ${this.state.emoji}`}</div>
+        <div>{`Badge: ${this.state.emoji}`}</div>
       </div>
     );
   }
