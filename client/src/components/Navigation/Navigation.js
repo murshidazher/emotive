@@ -12,6 +12,7 @@ import Tree from "../Tree/Tree";
 import Branch from "../Tree/Branch";
 import CheckBox from "../Navigation/CheckBox";
 import Slider from "./Slider";
+import Rank from "../Rank/Rank";
 
 class Navigation extends Component {
   /*
@@ -134,6 +135,7 @@ class Navigation extends Component {
           <div className="user">
             <div className="user__name">{this.props.name}</div>
             <div className="user__location">{this.props.city}</div>
+            <Rank entries={this.props.entries} />
 
             <div className="user__phone">
               <div className="user__phone__icon">

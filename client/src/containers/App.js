@@ -98,7 +98,7 @@ class App extends Component {
   };
 
   loadUser = data => {
-    this.setState({ logged: true }, Object.assign(this.state.user,
+    this.setState(Object.assign(this.state.user,
       {
         id: data.id,
         name: data.name,
