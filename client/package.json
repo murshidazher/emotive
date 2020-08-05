@@ -5,7 +5,7 @@
   "description": "The face recognition web app's front-end.",
   "dependencies": {
     "clarifai": "^2.9.1",
-    "lodash": "4.17.13",
+    "lodash": "4.17.19",
     "normalize.css": "^8.0.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
