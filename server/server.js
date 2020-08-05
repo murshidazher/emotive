@@ -3,43 +3,58 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
 const knex = require('knex');
+const jwt = require('jsonwebtoken');
+const redis = require('redis');
+
+const morgan = require('morgan');
 
 const register = require('./controllers/register');
 const signin = require('./controllers/signin');
+const signout = require('./controllers/signout');
 const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
-const PORT = process.env.PORT || 4001;
+const auth = require('./middleware/authorization');
+
+const PORT = process.env.PORT || 8080;
 
 
 const db = knex({
   client: 'pg',
-  connection: {
-    host : '127.0.0.1',
-    user : 'murshid',
-    password : '',
-    database : 'emotive'
-  }
+  connection: process.env.POSTGRES_URI
 });
+
+
+// setup redis client
+const redisClient = redis.createClient(process.env.REDIS_URI);
+
 
 const app = express();
 
 app.use(bodyParser.json());
+
+app.use(morgan('short'));
 app.use(cors());
 
 app.get('/', (req, res) => {
     res.send('Server is running..');
 })
 
-app.post('/signin', signin.handleSignin(db, bcrypt))
+app.get('/', (res, req) => { res.send("Server is working...") })
 
-app.post('/register', register.handleRegister(db, bcrypt))
+app.post('/signin', signin.handleSigninAuthentication(db, bcrypt, redisClient, jwt))
 
-app.get('/profile/:id', profile.handleProfileGet(db))
+app.post('/signout', auth.requireAuth(redisClient), signout.handleSignOut(redisClient))
 
-app.put('/image', image.handleImage(db))
+app.post('/register', register.handleRegisterAuthentication(db, bcrypt, redisClient, jwt))
 
-app.post('/imageurl', (req, res) => {image.handleApiCall(req, res)})
+app.get('/profile/:id', auth.requireAuth(redisClient), profile.handleProfileGet(db))
+
+app.post('/profile/:id', auth.requireAuth(redisClient), profile.handleProfileUpdate(db))
+
+app.put('/image', auth.requireAuth(redisClient), image.handleImage(db))
+
+app.post('/imageurl', auth.requireAuth(redisClient), (req, res) => {image.handleApiCall(req, res)})
 
 
 app.listen(PORT, () => {

@@ -6,11 +6,13 @@ import IconMenu from "../../img/icons/menu.svg";
 import IconSignOut from "../../img/icons/logout.svg";
 import IconCount from "../../img/icons/codesandbox.svg";
 import IconPhone from "../../img/icons/phone.svg";
+import IconSettings from "../../img/icons/settings.svg";
 
 import Tree from "../Tree/Tree";
 import Branch from "../Tree/Branch";
 import CheckBox from "../Navigation/CheckBox";
 import Slider from "./Slider";
+import Rank from "../Rank/Rank";
 
 class Navigation extends Component {
   /*
@@ -18,7 +20,7 @@ class Navigation extends Component {
    * @route - keeps track of our current position in page transition
    */
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       menu: false
     };
@@ -29,11 +31,25 @@ class Navigation extends Component {
   };
 
   formatDigit = (d) => {
-    return (d < 10) ? '0' + d.toString() : d.toString();
+    return (d < 10) ? '0' + d : d;
   }
 
   onSignOut = event => {
-    this.props.onRouteChange('logout');
+    fetch("http://localhost:8080/signout", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": 'Bearer ' + window.sessionStorage.getItem('token')
+      }
+    })
+      .then(resp => resp.json())
+      .then(data => {
+        if (data && data.logout === 'true') {
+          // delete the session storage
+          window.sessionStorage.removeItem('token');
+          this.props.onRouteChange('logout');
+        }
+      });
   }
 
   render() {
@@ -102,11 +118,24 @@ class Navigation extends Component {
 
           <div className="face__wrapper">
             <div className="face"></div>
+            <div alt="profile setting" className="profile-setting__icon">
+                <svg
+                  className="f-icon f-icon-settings"
+                  shapeRendering="geometricPrecision"
+                  onClick={this.props.modalToggle}
+                  style={{
+                    backgroundImage: `url(${IconSettings})`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "center"
+                  }}
+                ></svg>
+              </div>
           </div>
 
           <div className="user">
             <div className="user__name">{this.props.name}</div>
             <div className="user__location">{this.props.city}</div>
+            <Rank entries={this.props.entries} />
 
             <div className="user__phone">
               <div className="user__phone__icon">

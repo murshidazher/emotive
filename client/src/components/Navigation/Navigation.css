@@ -88,7 +88,7 @@
 .side-options__opt {
     margin: auto;
     width: 90%;
-    margin-top: 4.5rem;
+    margin-top: 2rem;
 }
 
 
@@ -351,4 +351,42 @@
     width: 30px;
     height: 24px;
 }
+
+
+.f-icon-settings {
+    width: 22px;
+    height: 22px;
+    transform: scale(.7);
+    filter: invert(22%) sepia(0%) saturate(19%) hue-rotate(37deg) brightness(94%) contrast(100%);
+    cursor: pointer;
+}
+
+.profile-setting__icon {
+    position: absolute;
+  display: inline-block;
+  vertical-align: middle;
+  margin: -115px 100px;
+}
+
+
+.f-icon-close {
+    width: 22px;
+    height: 22px;
+    transform: scale(.7);
+    
+    filter: invert(100%) sepia(1%) saturate(4334%) hue-rotate(260deg) brightness(111%) contrast(94%);
+}
+
+.profile-setting__close {
+    padding: 3px;
+    position: absolute;
+  display: inline-block;
+  vertical-align: middle;
+  margin: -30px 320px;
+  background-color: #ED4356;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+}
+
 

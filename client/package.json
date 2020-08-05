@@ -1,6 +1,6 @@
 {
   "name": "emotive-client",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "description": "The face recognition web app's front-end.",
   "dependencies": {
@@ -9,6 +9,7 @@
     "normalize.css": "^8.0.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-image-annotate": "^1.5.0",
     "react-p5": "^1.0.6",
     "react-scripts": "3.0.1"
   },

@@ -217,6 +217,10 @@ ul {
   transition: all .2s ease-in-out;
 }
 
+.bg-blue {
+  background-color: #1B43EF;
+}
+
 .btn--classic {
 
   display: inline-block; 
@@ -850,4 +854,8 @@ ul {
  filter: blur(125px);
 }
 
+
+input::placeholder {
+  font-size: .875em;
+}
 

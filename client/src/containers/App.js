@@ -1,12 +1,16 @@
 import React, { Component } from "react";
+
 import Navigation from "../components/Navigation/Navigation";
 import FaceRecognition from "../components/FaceRecognition/FaceRecognition";
 import ImageLinkForm from "../components/ImageLinkForm/ImageLinkForm";
 import Login from "../components/Login/Login";
 import Signup from "../components/Signup/Signup";
 import Logo from "../components/Logo/Logo";
-import LogoImage from "../img/logo_main.svg";
+import Modal from "../components/Modal/Modal";
+import Profile from "../components/Profile/Profile";
 
+
+import LogoImage from "../img/logo_main.svg";
 import IconCalendar from "../img/icons/calendar.svg";
 import IconAnalyze from "../img/icons/activity.svg";
 import IconPointer from "../img/icons/mouse-pointer.svg";
@@ -22,17 +26,19 @@ const initialState = {
   imageUrl: "",
   boxes: [],
   route: "signin", // signin
-  logged: "false",
+  logged: false,
+  profileOpen: false,
   user: {
     id: "",
     name: "",
     email: "",
     entries: 0,
-    city: "Arkansas",
+    city: "",
+    joined: "MM/DD/YYYY",
     code: "+1",
-    phone: "853 243 764 02",
-    lastSearchUrl: "https://howfix.net/wp-content/uploads/2018/02/sIaRmaFSMfrw8QJIBAa8mA-article.png",
-    lastSearchDate: "MM.DD.YYYY — HH:MM",
+    phone: "",
+    url: "https://howfix.net/wp-content/uploads/2018/02/sIaRmaFSMfrw8QJIBAa8mA-article.png",
+    date: "MM.DD.YYYY — HH:MM",
   },
   
 };
@@ -53,6 +59,40 @@ class App extends Component {
     this.state = initialState;
   }
 
+  componentDidMount() {
+    const token = window.sessionStorage.getItem('token');
+
+    if (token) {
+      fetch('http://localhost:8080/signin', {
+        method: "post",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "Authorization": 'Bearer ' + token
+        }
+      })
+        .then(resp => resp.json())
+        .then(data => {
+          if (data && data.id) {
+            fetch(`http://localhost:8080/profile/${data.id}`, {
+              method: "get",
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization": 'Bearer ' + token
+              }
+            })
+              .then(resp => resp.json())
+              .then(user => { 
+                if (user && user.email) {
+                  this.loadUser(user);
+                  this.onRouteChange('home');
+                }
+              })
+          }
+        })
+        .catch(console.log);
+    }
+  }
+
   onInputChange = event => {
     this.setState({ input: (event.target.value).trim() });
   };
@@ -64,17 +104,23 @@ class App extends Component {
         name: data.name,
         email: data.email,
         entries: data.entries,
-        lastSearchUrl: data.url,
-        lastSearchDate: data.date
+        joined: data.joined,
+        city: data.city,
+        phone: data.phone,
+        url: data.url,
+        date: data.date
       }));
   };
 
   onSubmit = () => {
     this.setState({ imageUrl: this.state.input });
 
-    fetch("http://localhost:4001/imageurl", {
+    fetch("http://localhost:8080/imageurl", {
       method: "post",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": 'Bearer ' + window.sessionStorage.getItem('token')
+      },
       body: JSON.stringify({
         input: this.state.input
       })
@@ -82,9 +128,12 @@ class App extends Component {
       .then(response => response.json())
       .then(response => {
         if (response) {
-          fetch("http://localhost:4001/image", {
+          fetch("http://localhost:8080/image", {
             method: "put",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": 'Bearer ' + window.sessionStorage.getItem('token')
+            },
             body: JSON.stringify({
               id: this.state.user.id,
               url: this.state.imageUrl
@@ -95,9 +144,9 @@ class App extends Component {
               const { entries, url, now } = data;
               this.setState(Object.assign(this.state.user,
                 {
-                  count: entries,
-                  lastSearchUrl: url,
-                  lastSearchDate: now
+                  entries: entries,
+                  url: url,
+                  date: now
                 }));
             })
             .catch(console.log);
@@ -109,27 +158,31 @@ class App extends Component {
   };
 
   calcFaces = data => {
-    return data.outputs[0].data.regions.map(clarifi => {
-      const face = clarifi.region_info.bounding_box;
-      const img = document.getElementById("inputImg");
-      const width = Number(img.width);
-      const height = Number(img.height);
-
-      // rightCol: ((face.left_col * width) - (face.right_col * width)),
-      // bottomRow: ((face.top_row * height) - (face.bottom_row * height)),
-
-      return {
-        leftCol: face.left_col * width,
-        topRow: face.top_row * height,
-        rightCol: width - face.right_col * width,
-        bottomRow: height - face.bottom_row * height
-      };
-    });
+    if (data && data.outputs) {
+      return data.outputs[0].data.regions.map(clarifi => {
+        const face = clarifi.region_info.bounding_box;
+        const img = document.getElementById("inputImg");
+        const width = Number(img.width);
+        const height = Number(img.height);
+  
+        // rightCol: ((face.left_col * width) - (face.right_col * width)),
+        // bottomRow: ((face.top_row * height) - (face.bottom_row * height)),
+  
+        return {
+          leftCol: face.left_col * width,
+          topRow: face.top_row * height,
+          rightCol: width - face.right_col * width,
+          bottomRow: height - face.bottom_row * height
+        };
+      });
+    }
     
+    return;
   };
 
   displayBoundingBoxes = boxes => {
-    this.setState({ boxes: boxes });
+    if (boxes)
+      this.setState({ boxes: boxes });
   };
 
   onRouteChange = route => {
@@ -142,12 +195,25 @@ class App extends Component {
     this.setState({ route: route });
   };
 
+  toggleModal = () => {
+    this.setState(prevState => ({
+      ...prevState,
+      profileOpen: !prevState.profileOpen
+    }))
+  }
+
   render() {
     return (
       <div className="App">
+        { this.state.profileOpen &&
+          <Modal>
+            <Profile isOpen={this.state.profileOpen} toggleModal={this.toggleModal} user={this.state.user} loadUser={this.loadUser} />
+          </Modal>
+        }
         {this.state.route === "home" ? (
           <div>
             <Navigation onRouteChange={this.onRouteChange}
+              modalToggle={this.toggleModal}
               name={this.state.user.name}
               entries={this.state.user.entries}
               city={this.state.user.city}
@@ -172,7 +238,7 @@ class App extends Component {
                           ></svg>
                         </div>
                         <div className="box__details__content">
-                          {this.state.user.lastSearchDate}
+                          {this.state.user.date}
                           {/* 26.4.2014 &mdash; 02:30 PM */}
                         </div>
                       </div>
@@ -193,7 +259,7 @@ class App extends Component {
                           ></svg>
                         </div>
                         <div className="box__details__content">
-                          <a href={this.state.user.lastSearchUrl} target="_blank" rel="noopener noreferrer" className="box__details__content__link">{this.state.user.lastSearchUrl}</a>
+                          <a href={this.state.user.url} target="_blank" rel="noopener noreferrer" className="box__details__content__link">{this.state.user.url}</a>
                         </div>
                       </div>
                     </div>
@@ -213,7 +279,7 @@ class App extends Component {
               </div>
             </div>
           </div>
-        ) : (
+        ) : !(window.sessionStorage.getItem('token')) && (
           <div className="content">
               <div className="content__left">
               <video id="videobcg" preload="auto" autoPlay={true} loop="loop" muted="muted" volume="0">
@@ -303,10 +369,10 @@ class App extends Component {
                 <div className="para clr--white mt-para">
                 Create a safer and more personalized planet through facial recognition technology
                 </div>
-                {
+                {  
                   this.state.route === "signin" ?
                     <Login loadUser={this.loadUser} onRouteChange={this.onRouteChange} /> :
-                    <Signup loadUser={this.loadUser} onRouteChange={this.onRouteChange} /> 
+                      <Signup loadUser={this.loadUser} onRouteChange={this.onRouteChange} /> 
                 }
               </div>
             </div>
