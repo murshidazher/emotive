@@ -16,7 +16,7 @@
     "start": "concurrently --kill-others-on-fail \"npm run server:start\" \"npm run client:start\""
   },
   "repository": "https://github.com/murshidazher/emotive.git",
-  "author": "murshidazher <murshidazher@yahoo.com>",
+  "author": "Murshid Azher <hello@murshidazher.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/murshidazher/emotive/issues"
