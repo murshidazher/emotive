@@ -1,10 +1,10 @@
 <img src="https://raw.githubusercontent.com/murshidazher/emotive/master/client/src/img/logo_main.svg" width="75px">
 
-# [Emotive](https://github.com/murshidazher/emotive)
+# [emotive](https://github.com/murshidazher/emotive)
 
-> Some text as description
+> A face recognition app to detect faces and annotate images
 
-Details
+A facial recognition app created using [clarifai](https://docs.clarifai.com/) and [react](https://reactjs.org/docs/getting-started.html) with additional features such as **logging**, **entity annotation** and much more.
 
 ## License
 
