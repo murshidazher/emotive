@@ -6,6 +6,21 @@
 
 A facial recognition app created using [clarifai](https://docs.clarifai.com/) and [react](https://reactjs.org/docs/getting-started.html) with additional features such as **logging**, **entity annotation** and much more.
 
+## Instructions
+
+Step by Step Instructions:
+
+| Task             | Description                                                                                                                                     |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| clone         | Run `git clone https://github.com/murshidazher/emotive.git`
+| change directory         | Change directory `cd [path]`  to the clone directory
+| `install`        | Run `npm install`
+| change directory         | Go to server `cd server`.
+| build container         | Run `docker build -t emotive-container .`
+| run container         | Run `docker-compose up --build .`
+| change directory         | Go to client `cd client` in another session
+| To stop docker container         | Run `docker-compose down`                                       |                                                                                                |
+
 ## License
 
 [MIT](https://github.com/murshidazher/emotive/blob/master/LICENSE) © Murshid Azher
