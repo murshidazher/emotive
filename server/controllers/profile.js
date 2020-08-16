@@ -5,7 +5,7 @@ const handleProfileGet = (db) => (req, res) => {
     .then(user => {
 
         if (user.length) {
-        
+
             db('shistory')
                 .where('fid', '=', user[0].id)
                 .then(data => {
@@ -19,11 +19,13 @@ const handleProfileGet = (db) => (req, res) => {
                             phone: user[0].phone,
                             city: user[0].city,
                             url: data[0].url,
-                            date: data[0].date
+                            date: data[0].date,
+                            group_id: user[0].group_id,
+                            user_role_id: user[0].user_role_id,
                         })
                     }
-                    else { 
-                    
+                    else {
+
                         res.json({
                             email: user[0].email,
                             entries: user[0].entries,
@@ -33,7 +35,9 @@ const handleProfileGet = (db) => (req, res) => {
                             phone: user[0].phone,
                             city: user[0].city,
                             url: 'https://howfix.net/wp-content/uploads/2018/02/sIaRmaFSMfrw8QJIBAa8mA-article.png',
-                            date: 'MM.DD.YYYY — HH:MM'
+                            date: 'MM.DD.YYYY — HH:MM',
+                            group_id: user[0].group_id,
+                            user_role_id: user[0].user_role_id,
                         })
                     }
                 })
@@ -43,7 +47,7 @@ const handleProfileGet = (db) => (req, res) => {
     })
 }
 
-const handleProfileUpdate = (db) => (req, res) => { 
+const handleProfileUpdate = (db) => (req, res) => {
     const { id } = req.params;
     const { name, phone, city } = req.body.formInput;
 
@@ -68,7 +72,7 @@ const handleProfileUpdate = (db) => (req, res) => {
                 res.status(400).json('Unable to update');
             }
         })
-    .catch(err => res.status(400).json('Erro update'))
+    .catch(err => res.status(400).json('Error update'))
 
 }
 

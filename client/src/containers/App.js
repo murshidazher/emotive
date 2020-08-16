@@ -18,6 +18,16 @@ import IconFacial from "../img/icons/aperture.svg";
 import IconDemography from "../img/icons/target.svg";
 import IconURL from "../img/icons/link.svg";
 
+import {
+  Switch,
+  Route,
+  Link,
+  withRouter
+} from "react-router-dom";
+
+
+import Annotate from "./Annotate";
+
 import "./App.css";
 
 
@@ -40,14 +50,8 @@ const initialState = {
     url: "https://howfix.net/wp-content/uploads/2018/02/sIaRmaFSMfrw8QJIBAa8mA-article.png",
     date: "MM.DD.YYYY — HH:MM",
   },
-  
-};
 
-/**
- * https://cdn.shopify.com/s/files/1/0123/7811/2057/files/shutterstock_753502027-3_1500x.jpg?v=1550093127
- * https://cdn.shopify.com/s/files/1/0123/7811/2057/files/shutterstock_627263492-7_4348aaa0-2880-438e-86c7-369f13e4880c_1500x.jpg?v=1550093965
- * https://cdn.shopify.com/s/files/1/0123/7811/2057/files/shutterstock_788577838-2_1500x.jpg?v=1550092632
- */
+};
 
 class App extends Component {
   /*
@@ -81,7 +85,7 @@ class App extends Component {
               }
             })
               .then(resp => resp.json())
-              .then(user => { 
+              .then(user => {
                 if (user && user.email) {
                   this.loadUser(user);
                   this.onRouteChange('home');
@@ -108,7 +112,9 @@ class App extends Component {
         city: data.city,
         phone: data.phone,
         url: data.url,
-        date: data.date
+        date: data.date,
+        group_id: data.group_id,
+        user_role_id: data.user_role_id
       }));
   };
 
@@ -164,10 +170,10 @@ class App extends Component {
         const img = document.getElementById("inputImg");
         const width = Number(img.width);
         const height = Number(img.height);
-  
+
         // rightCol: ((face.left_col * width) - (face.right_col * width)),
         // bottomRow: ((face.top_row * height) - (face.bottom_row * height)),
-  
+
         return {
           leftCol: face.left_col * width,
           topRow: face.top_row * height,
@@ -176,7 +182,7 @@ class App extends Component {
         };
       });
     }
-    
+
     return;
   };
 
@@ -221,61 +227,76 @@ class App extends Component {
               phone={this.state.user.phone}/>
             <div className="ml">
               <div className="wrapper">
-                <div className="sub__title">Active Search</div>
-                <div className="box">
-                  <div className="box__left blue">
-                    <div className="box__content">
-                      <div className="box__details">
-                        <div className="box__details__icon-wrapper">
-                          <svg
-                            className="f-icon f-icon-calendar"
-                            shapeRendering="geometricPrecision"
-                            style={{
-                              backgroundImage: `url(${IconCalendar})`,
-                              backgroundRepeat: "no-repeat",
-                              backgroundPosition: "center"
-                            }}
-                          ></svg>
-                        </div>
-                        <div className="box__details__content">
-                          {this.state.user.date}
-                          {/* 26.4.2014 &mdash; 02:30 PM */}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="box__right blue-light">
-                    <div className="box__content">
-                    <div className="box__details">
-                        <div className="box__details__icon-wrapper">
-                          <svg
-                            className="f-icon f-icon-calendar"
-                            shapeRendering="geometricPrecision"
-                            style={{
-                              backgroundImage: `url(${IconURL})`,
-                              backgroundRepeat: "no-repeat",
-                              backgroundPosition: "center"
-                            }}
-                          ></svg>
-                        </div>
-                        <div className="box__details__content">
-                          <a href={this.state.user.url} target="_blank" rel="noopener noreferrer" className="box__details__content__link">{this.state.user.url}</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
 
-                <div>
-                  <ImageLinkForm
-                    onInputChange={this.onInputChange}
-                    onSubmit={this.onSubmit}
-                  />
-                  <FaceRecognition
-                    imageUrl={this.state.imageUrl}
-                    boundingBoxes={this.state.boxes}
-                  />
-                </div>
+              <Switch>
+                <Route path="/annotate">
+                 <Annotate/>
+              </Route>
+              <Route path="/request">
+                  <Annotate/>
+              </Route>
+              <Route path="/">
+              <>
+                      <div className="sub__title">Active Search</div>
+                      <div className="box">
+                        <div className="box__left blue">
+                          <div className="box__content">
+                            <div className="box__details">
+                              <div className="box__details__icon-wrapper">
+                                <svg
+                                  className="f-icon f-icon-calendar"
+                                  shapeRendering="geometricPrecision"
+                                  style={{
+                                    backgroundImage: `url(${IconCalendar})`,
+                                    backgroundRepeat: "no-repeat",
+                                    backgroundPosition: "center"
+                                  }}
+                                ></svg>
+                              </div>
+                              <div className="box__details__content">
+                                {this.state.user.date}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="box__right blue-light">
+                          <div className="box__content">
+                            <div className="box__details">
+                              <div className="box__details__icon-wrapper">
+                                <svg
+                                  className="f-icon f-icon-calendar"
+                                  shapeRendering="geometricPrecision"
+                                  style={{
+                                    backgroundImage: `url(${IconURL})`,
+                                    backgroundRepeat: "no-repeat",
+                                    backgroundPosition: "center"
+                                  }}
+                                ></svg>
+                              </div>
+                              <div className="box__details__content">
+                                <a href={this.state.user.url} target="_blank" rel="noopener noreferrer" className="box__details__content__link">{this.state.user.url}</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div>
+                        <ImageLinkForm
+                          onInputChange={this.onInputChange}
+                          onSubmit={this.onSubmit}
+                        />
+                        <FaceRecognition
+                          imageUrl={this.state.imageUrl}
+                          boundingBoxes={this.state.boxes}
+                        />
+                  </div>
+                    </>
+              </Route>
+            </Switch>
+
+
+
               </div>
             </div>
           </div>
@@ -289,9 +310,9 @@ class App extends Component {
               </video>
                 <div className="logo-top-wrapper">
                   <Logo backgroundImage={LogoImage} margin='0'/>
-                  
+
                 </div>
-                
+
                 <div className="heading mth">
                   Featured Experiences
                 </div>
@@ -357,22 +378,22 @@ class App extends Component {
                     <div className="para feature__content">Analyze images to get prediction on age, gender, and appearance for each faces.</div>
                   </div>
                 </div>
-                
+
               </div>
               <div className="content__right">
                 <div className="heading clr--white">
                   Share your Experiences to the world
                 </div>
                 <div className="heading-break ">
-        
+
                 </div>
                 <div className="para clr--white mt-para">
                 Create a safer and more personalized planet through facial recognition technology
                 </div>
-                {  
+                {
                   this.state.route === "signin" ?
                     <Login loadUser={this.loadUser} onRouteChange={this.onRouteChange} /> :
-                      <Signup loadUser={this.loadUser} onRouteChange={this.onRouteChange} /> 
+                      <Signup loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
                 }
               </div>
             </div>
@@ -383,4 +404,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);

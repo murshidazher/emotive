@@ -7,14 +7,14 @@ import "./Profile.css";
 class Profile extends React.Component {
 
     constructor(props) {
-        super(props);
+      super(props);
         this.state = {}
     }
-    
+
     onFormChange = (event) => {
         const value = ((event.target.value).trim());
         const isNull = !(value !== undefined && value !== null && value !== '');
-        
+
 
         switch (event.target.name) {
             case 'user-name':
@@ -50,13 +50,14 @@ class Profile extends React.Component {
             body: JSON.stringify({ formInput: data })
         }).then(resp => {
             if (resp.status === 200 || resp.status === 304) {
-                this.props.toggleModal();
-                this.props.loadUser({ ...this.props.user, ...data }); 
+              this.props.toggleModal();
+                this.props.loadUser({ ...this.props.user, ...data });
             }
         }).catch(console.log());
     }
 
-    render() {
+  render() {
+
         const { isOpen, toggleModal, user } = this.props;
 
         return (
@@ -79,8 +80,8 @@ class Profile extends React.Component {
                             <div>
                                 <div className="face__wrapper face__wrapper__modal">
                                     <div className="face"></div>
-                                
-            
+
+
                                 </div>
                                 <div className="user__location center">Member Since: {(user.joined).substring(0,10)}</div>
                             </div>
@@ -139,7 +140,7 @@ class Profile extends React.Component {
         );
     };
 }
-  
+
   export default Profile;
-  
+
 

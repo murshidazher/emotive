@@ -8,7 +8,9 @@ CREATE TABLE users
     entries BIGINT DEFAULT 0,
     joined TIMESTAMP NOT NULL,
     phone VARCHAR(14),
-    city VARCHAR(100)
+    city VARCHAR(100),
+    group_id INTEGER NOT NULL REFERENCES user_group(id),
+    user_role_id INTEGER NOT NULL REFERENCES user_role(id)
 );
 
 COMMIT;
