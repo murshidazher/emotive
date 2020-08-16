@@ -4,8 +4,7 @@
 
 > A face recognition app to detect faces and annotate images
 
-A facial recognition app created using [clarifai](https://docs.clarifai.com/) and [react](https://reactjs.org/docs/getting-started.html) with additional features such as **logging**,
-**entity annotation** and much more.
+A facial recognition app created using [clarifai](https://docs.clarifai.com/) and [react](https://reactjs.org/docs/getting-started.html) with additional features such as **logging**, <br> **entity annotation** and much more.
 
 ## Instructions
 
@@ -21,6 +20,16 @@ Step by Step Instructions:
 | `build` and `run` container         | Run `docker-compose up --build`
 | change directory         | Go to client `cd client` in another session
 | To stop docker container         | Run `docker-compose down`                                       |                                                                                                |
+
+## Credentials
+
+Seeded credentials :
+
+| Type             | Credentials                                                                                                                                     |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `admin`         | email `admin@test.com` &mdash; password `admin`
+| `annotator`         | email `marc@test.com` &mdash; password `test`
+| `client`        | email `belle@gmail.com` &mdash; password `belle`                                                                                      |
 
 ## License
 
