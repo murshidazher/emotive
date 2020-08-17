@@ -33,4 +33,4 @@ Seeded credentials :
 
 ## License
 
-[MIT](https://github.com/murshidazher/emotive/blob/master/LICENSE) © Murshid Azher
+[MIT](https://github.com/murshidazher/emotive/blob/master/LICENSE) © Murshid Azher.
