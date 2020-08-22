@@ -13,6 +13,7 @@ const signin = require('./controllers/signin');
 const signout = require('./controllers/signout');
 const profile = require('./controllers/profile');
 const image = require('./controllers/image');
+const annotate = require('./controllers/annotate');
 
 const auth = require('./middleware/authorization');
 
@@ -54,8 +55,17 @@ app.post('/profile/:id', auth.requireAuth(redisClient), profile.handleProfileUpd
 
 app.put('/image', auth.requireAuth(redisClient), image.handleImage(db))
 
-app.post('/imageurl', auth.requireAuth(redisClient), (req, res) => {image.handleApiCall(req, res)})
+app.post('/imageurl', auth.requireAuth(redisClient), (req, res) => { image.handleApiCall(req, res) })
 
+app.get('/annotate/:id', auth.requireAuth(redisClient), annotate.handleAnnotatesGet(db))
+
+app.post('/annotate/:id', auth.requireAuth(redisClient), annotate.handleRequestAnnotate(db))
+
+
+// handleRequestAnnotate,
+//   handleResolveAnnotate,
+//   handleResponseAnnotate,
+//   handleAnnotatesGet
 
 app.listen(PORT, () => {
 	console.log(`Server is listening on port ${PORT}`)

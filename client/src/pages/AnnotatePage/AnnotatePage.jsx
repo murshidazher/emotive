@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
-import {
-  ReactPictureAnnotation,
-  defaultShapeStyle,
-  DefaultInputSection
-} from "react-picture-annotation";
-import "./Annotate.css";
 
-const Annotate = ({user}) => {
+import { ReactPictureAnnotation } from "react-picture-annotation";
+import "./AnnotatePage.css";
+
+const AnnotatePage = ({ user }) => {
   const [pageSize, setPageSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight
@@ -17,8 +13,8 @@ const Annotate = ({user}) => {
   };
 
   useEffect(() => {
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
   }, []);
 
   const onSelect = selectedId => console.log(selectedId);
@@ -37,4 +33,4 @@ const Annotate = ({user}) => {
   );
 };
 
-export default Annotate;
+export default AnnotatePage;

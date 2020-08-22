@@ -3,6 +3,8 @@ import React from "react";
 import IconClose from "../../img/icons/x.svg";
 
 import "./Profile.css";
+import { AuthConsumer } from "../../context/AuthContext";
+
 
 class Profile extends React.Component {
 
@@ -40,7 +42,7 @@ class Profile extends React.Component {
         }
     }
 
-    onProfileUpdate = (data) => {
+    onProfileUpdate = (cb, data) => {
         fetch(`http://localhost:8080/profile/${this.props.user.id}`, {
             method: "post",
             headers: {
@@ -51,17 +53,19 @@ class Profile extends React.Component {
         }).then(resp => {
             if (resp.status === 200 || resp.status === 304) {
               this.props.toggleModal();
-                this.props.loadUser({ ...this.props.user, ...data });
+              cb({ ...this.props.user, ...data });
             }
         }).catch(console.log());
     }
 
   render() {
 
-        const { isOpen, toggleModal, user } = this.props;
+        const { isOpen, toggleModal } = this.props;
 
         return (
-            isOpen && <div className="profile-modal">
+          isOpen &&
+          <AuthConsumer>
+          {({ user, loadUser }) => (<div className="profile-modal">
                 <main className="modal-form">
                     <div className="profile-setting__close" alt="close">
                         <svg
@@ -127,7 +131,7 @@ class Profile extends React.Component {
                                 />
                             </div>
                         </fieldset>
-                        <div className="bg-blue pa2 center lh-copy mt3" onClick={() => this.onProfileUpdate(this.state)}>
+                        <div className="bg-blue pa2 center lh-copy mt3" onClick={() => this.onProfileUpdate(loadUser, this.state)}>
                             <span
                                 className="f5 white link  db"
                             >
@@ -136,7 +140,8 @@ class Profile extends React.Component {
                         </div>
                     </div>
                 </main>
-            </div>
+            </div>)}
+            </AuthConsumer>
         );
     };
 }
