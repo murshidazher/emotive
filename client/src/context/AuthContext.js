@@ -70,7 +70,7 @@ class AuthProvider extends React.Component {
     }
   }
 
-  signup = (name, email, password) => {
+  signup = (name, email, password, cb) => {
     fetch("http://localhost:8080/register", {
       method: "post",
       headers: { "Content-Type": "application/json" },
@@ -96,8 +96,8 @@ class AuthProvider extends React.Component {
             .then(resp => resp.json())
             .then(user => {
               if (user && user.email) {
-                this.loadUser(user);
-                this.setAuthenticated(true);
+                this.loadUser(true, user);
+                setTimeout(cb, 0)
               }
           })
         }
@@ -131,7 +131,7 @@ class AuthProvider extends React.Component {
             .then(user => {
               if (user && user.email) {
                 this.loadUser(true, user);
-                setTimeout(cb, 100)
+                setTimeout(cb, 0)
               }
           })
         }
@@ -142,7 +142,7 @@ class AuthProvider extends React.Component {
     window.sessionStorage.setItem('token', token);
   }
 
-  signout = () => {
+  signout = (cb) => {
 
     console.log('signout')
     fetch("http://localhost:8080/signout", {
@@ -156,8 +156,8 @@ class AuthProvider extends React.Component {
       .then(data => {
         if (data && data.logout === 'true') {
           window.sessionStorage.removeItem('token');
-          this.loadUser(initialUser);
-          this.setAuthenticated(false);
+          this.loadUser(false, initialUser);
+          setTimeout(cb, 0)
 
         }
       });

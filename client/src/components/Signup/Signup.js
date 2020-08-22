@@ -13,8 +13,6 @@ class Signup extends React.Component {
     };
   }
 
-
-
   onNameChange = event => {
     this.setState({ name: event.target.value });
   };
@@ -77,7 +75,7 @@ class Signup extends React.Component {
                 <button
                   type="submit"
                   className="btn"
-                  onClick={() => signup(this.state.name, this.state.email, this.state.password)}
+                  onClick={() => signup(this.state.name, this.state.email, this.state.password, this.props.handleAuth)}
                 >
                   <span className="btn__content">Sign Up</span>
                 </button>
